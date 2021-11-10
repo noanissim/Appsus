@@ -1,0 +1,31 @@
+
+.note-preview-container{
+        background-color: rgba(0, 174, 255, 0.603);
+        color: white;
+        font-size: 20px;
+        padding: 10px;
+        border: 1px solid black;
+        height: 200px;
+        width: 300px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: 0.2s;
+        box-shadow: -1px 2px 18px 1px rgba(0,0,0,0.93);
+}
+
+.note-list{
+    margin: 0;
+    padding: 20px;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+.note-list li{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}

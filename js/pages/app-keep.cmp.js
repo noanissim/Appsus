@@ -1,8 +1,9 @@
 import { eventBus } from '../services/event-bus-service.js'
-import { utilService } from '../services/util-service.js'
+import { notesService } from '../keep/services/note-service.js'
+import noteList from '../keep/cmps/note-list.cmp.js'
+import notePreview from '../keep/cmps/note-preview.cmp.js'
 
 export default {
-  props: [''],
   template: `
        <section class="app-main">
            <h1>app-keep</h1>
@@ -10,13 +11,37 @@ export default {
            <!-- search with filter -->
             <!-- <book-filter @filtered="setFilter"/> -->
             <!-- <book-add @bookAdded="addBook" /> -->
-    
-            <book-list v-if="books" :books="booksToShow"/>
+            <note-preview  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
     `,
   data() {
-    return {}
+    return {
+      notes: null,
+    }
   },
-  methods: {},
-  computed: {},
+  created() {
+    this.getNotes()
+  },
+  methods: {
+    getNotes() {
+      notesService.query().then(notes => {
+        this.notes = notes
+        console.log(this.notes)
+      })
+    },
+    removeNote(id) {
+      notesService.remove(id).then(notes => {
+        this.getNotes()
+      })
+    },
+  },
+  computed: {
+    notesToShow() {
+      return this.notes
+    },
+  },
+  components: {
+    noteList,
+    notePreview,
+  },
 }
