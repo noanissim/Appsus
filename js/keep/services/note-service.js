@@ -3,6 +3,7 @@ export const notesService = {
   query,
   remove,
   save,
+  addNewNote,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -25,7 +26,7 @@ function _createNotes() {
         id: 'n102',
         type: 'note-img',
         info: {
-          url: 'http://some-img/me',
+          url: 'img/notes/user2.png',
           title: 'Bobi and Me',
         },
         style: {
@@ -55,7 +56,7 @@ function _createNotes() {
         id: 'n105',
         type: 'note-img',
         info: {
-          url: 'http://some-img/me',
+          url: 'img/notes/user2.png',
           title: 'Bobi and Me',
         },
         style: {
@@ -77,6 +78,45 @@ function _createNotes() {
     saveToStorage(NOTES_KEY, notes)
   }
   return notes
+}
+
+function getImgNote(url) {
+  return {
+    type: 'note-img',
+    info: {
+      url,
+    },
+    style: {
+      backgroundColor: '#00d',
+    },
+    isPinned: true,
+  }
+}
+function getTxtNote(txt) {
+  return {
+    type: 'note-txt',
+    isPinned: true,
+    info: {
+      txt,
+    },
+  }
+}
+function getTodosNote(label) {
+  return {
+    type: 'note-todos',
+    info: {
+      label,
+      todos: [{ txt: 'Change me', doneAt: Date.now() }],
+    },
+  }
+}
+
+function addNewNote(type, value) {
+  let note = null
+  if (type === 'txt') note = getTxtNote(value)
+  if (type === 'img') note = getImgNote(value)
+  if (type === 'todo') note = getTodosNote(value)
+  return storageService.post(NOTES_KEY, note)
 }
 
 function query() {
