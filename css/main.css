@@ -29,7 +29,7 @@ body {
 
 .app-footer {
     height: 3vh;
-    background-color: pink;
+    background-color: rgb(160, 160, 160);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +40,7 @@ body {
 
 .app-main {
     height: 90vh;
-    background-color: rgb(152, 164, 197);
+    background-color: rgb(255, 255, 255);
 }
 
 .read-more-btn {
@@ -48,4 +48,86 @@ body {
     text-decoration: blue;
     font-size: 20px;
     cursor: pointer;
+}
+
+/*Email*/
+
+/* main-email-page */
+.app-email {
+    height: 90%;
+    text-align: center;
+    margin-block: 20px;
+}
+
+.main-email-page {
+    display: flex;
+    flex-wrap: wrap;
+    height: 70%;
+    margin: auto;
+    width: 90%;
+
+}
+
+.email-list {
+    background-color: rgb(230, 230, 230);
+    flex: 3;
+    min-height: 100%;
+}
+
+.email-list-ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.email-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(233, 233, 233);
+    min-height: 100%;
+    flex: 1;
+    border: 1px solid black
+}
+
+.email-actions>* {
+    margin-block: 10px;
+}
+
+/*email-preview*/
+.email-preview {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    border: 1px solid black
+}
+
+.email-preview-data p {
+    display: inline-block;
+    margin: 5px;
+}
+
+.actions-email-preview button {
+    display: inline-block;
+
+}
+
+.email-img {
+    width: 7%;
+}
+
+.emailIsOpen {
+    background-color: darkcyan;
+}
+
+/*email-details*/
+.email-details-box {
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 1px #888888;
+    margin: 30px auto;
+    height: fit-content;
+    padding: 10px;
 }

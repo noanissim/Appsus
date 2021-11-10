@@ -2,7 +2,7 @@ export default {
     props: ['txt'],
     template: `
         <div class="long-text">
-            <p>description:
+            <p>Body:
                 <span>{{showText}} 
                     <span 
                         v-if="isTextLong" 
@@ -33,16 +33,16 @@ export default {
     computed: {
         showText() {
             let strLength = this.txt.length
-            if (strLength < 100 || this.isFull) return this.txt
+            if (strLength < 10 || this.isFull) return this.txt
 
-            let strShort = this.txt.slice(0, 100)
+            let strShort = this.txt.slice(0, 10)
             return strShort
         },
         isTextLong() {
-            return (!this.isFull && this.txt.length > 100)
+            return (!this.isFull && this.txt.length > 10)
         },
         isTextExpended() {
-            return (this.isFull && this.txt.length > 100)
+            return (this.isFull && this.txt.length > 10)
         }
     },
 }

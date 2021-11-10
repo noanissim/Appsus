@@ -1,12 +1,13 @@
 import emailList from '../email/cmps/email-list.cmp.js'
 import emailFilter from '../email/cmps/email-filter.cmp.js'
 import emailAdd from '../email/cmps/email-add.cmp.js'
-// import {
-//     eventBus
-// } from '../services/event-bus-service.js';
-// import {
-//     emailService
-// } from '../email/services/email-service.js';
+import emailActions from '../email/cmps/email-actions.cmp.js'
+import {
+    eventBus
+} from '../services/event-bus-service.js';
+import {
+    emailService
+} from '../email/services/email-service.js';
 
 
 export default {
@@ -14,15 +15,19 @@ export default {
     components: {
         emailList,
         emailFilter,
-        emailAdd
+        emailAdd,
+        emailActions
 
 
     },
     template: `
-       <section class="app-main">
+       <section class="app-main app-email">
            <h1>app-email</h1>
-           <!-- <header></header> -->
-           <!-- search -->
+           <email-filter @filtered="setFilter"/>
+           <section class="main-email-page">
+                <email-actions></email-actions>
+                <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail" @removeEmail="removeEmail"/>
+           </section>
            <!-- actions  any item is a new route -(stars-filter) -->
            <!-- emails list  preview  details -->
 
@@ -30,14 +35,67 @@ export default {
     `,
     data() {
         return {
+            emails: null,
+            selectedEmail: null,
+            filterBy: null
+        };
+    },
+    created() {
+        this.loadEmails()
+        // this.emails = emailservice.query()
 
+    },
+
+    methods: {
+        loadEmails() {
+            emailService.query()
+                .then(emails => {
+                    console.log(emails);
+                    this.emails = emails
+                })
+        },
+        addEmail() {
+            this.loadEmails()
+        },
+        removeEmail(id) {
+            console.log(id, 'hereeeee');
+            emailService.remove(id)
+                .then(() => {
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success',
+                        link: ''
+                    };
+                    eventBus.$emit('showMsg', msg);
+                    this.loadEmails();
+                })
+                .catch(err => {
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                });
+        },
+        selectEmail(email) {
+            this.selectedEmail = email;
+        },
+        closeDetails() {
+            this.selectedEmail = null;
+        },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
         }
     },
-    methods: {
-
-
-    },
     computed: {
-
+        emailsToShow() {
+            // returns emails based on the current filter
+            return this.emails.filter(email => {
+                console.log('email', email);
+                console.log('email.subject', email.subject);
+                return email
+            })
+        }
     },
 }

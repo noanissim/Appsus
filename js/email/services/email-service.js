@@ -1,9 +1,9 @@
 import {
     utilService
-} from '../../services/util-service';
+} from '../../services/util-service.js';
 import {
     storageService
-} from '../../services/async-storage-service';
+} from '../../services/async-storage-service.js';
 
 const EMAILS_KEY = 'emails';
 
@@ -15,11 +15,14 @@ export const emailService = {
     save,
     getEmptyEmail,
     getById,
-
     getPrevEmailId,
     getNextEmailId
 
 };
+
+
+
+
 
 function query() {
     return storageService.query(EMAILS_KEY);
@@ -98,10 +101,86 @@ function getPrevEmailId(emailId) {
 }
 
 function _createEmails() {
+    let loggedinUser = {
+        email: 'user@appsus.com',
+        fullname: 'Mahatma Appsus'
+    }
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
         console.log('here');
-        emails = []
+        emails = [{
+                id: utilService.makeId(),
+                subject: 'Message 1',
+                body: 'Would',
+                isRead: false,
+                sentAt: 1551133930594,
+                to: 'momo@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 2',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1551133930594,
+                from: 'popo@momo.com',
+                to: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 3',
+                body: 'Would love to catch up sometimes lorem lorem lorem ',
+                isRead: false,
+                sentAt: 1551133930594,
+                to: 'riri@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 4',
+                body: 'love',
+                isRead: false,
+                sentAt: 1551133930594,
+                to: 'kiki@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 5',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1551133930594,
+                to: 'lala@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 6',
+                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quisquam inventore molestiae voluptatum veritatis placeat enim dolor soluta dolorum et omnis, cum necessitatibus possimus unde. Quaerat facilis repellendus reiciendis hic!',
+                isRead: false,
+                sentAt: 1551133930594,
+                to: 'lala@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 7',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1551133930594,
+                to: 'lala@momo.com',
+                from: loggedinUser.email
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Message 5',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1551133930594,
+                to: 'lala@momo.com',
+                from: loggedinUser.email
+            },
+        ]
 
         utilService.saveToStorage(EMAILS_KEY, emails);
     }
