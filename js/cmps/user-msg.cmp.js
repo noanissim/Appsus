@@ -7,7 +7,7 @@ export default {
     <transition name="fade">
         <div v-if="msg" class="user-msg" :class="msg.type">
             <p>{{msg.txt}}</p>
-            <router-link :to="msg.link" @click.native="scrollToTop">Go back to all books list</router-link>
+            <router-link :to="msg.link" @click.native="scrollToTop">Go back to all emails list</router-link>
         </div>
      
     </transition>

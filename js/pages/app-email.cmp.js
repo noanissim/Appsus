@@ -25,7 +25,7 @@ export default {
            <h1>app-email</h1>
            <email-filter @filtered="setFilter"/>
            <section class="main-email-page">
-                <email-actions></email-actions>
+                <email-actions  v-if="emails" :emails="emailsToShow"/>
                 <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail" @removeEmail="removeEmail"/>
            </section>
            <!-- actions  any item is a new route -(stars-filter) -->
@@ -47,6 +47,7 @@ export default {
     },
 
     methods: {
+
         loadEmails() {
             emailService.query()
                 .then(emails => {
@@ -64,7 +65,7 @@ export default {
                     const msg = {
                         txt: 'Deleted succesfully',
                         type: 'success',
-                        link: ''
+                        link: '/email'
                     };
                     eventBus.$emit('showMsg', msg);
                     this.loadEmails();
@@ -91,11 +92,22 @@ export default {
     computed: {
         emailsToShow() {
             // returns emails based on the current filter
-            return this.emails.filter(email => {
-                console.log('email', email);
-                console.log('email.subject', email.subject);
-                return email
-            })
-        }
+            if (!this.filterBy) return this.emails
+            const {
+                subject
+            } = this.filterBy
+            const searchStr = subject.toLowerCase()
+            const emailsToShow = this.emails.filter((email) => {
+                return email.subject.toLowerCase().includes(searchStr) ||
+                    email.body.toLowerCase().includes(searchStr)
+
+
+            });
+            return emailsToShow;
+        },
+        emailsCount() {
+            console.log(this.emails.length);
+        },
+
     },
 }

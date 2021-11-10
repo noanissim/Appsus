@@ -16,7 +16,8 @@ export const emailService = {
     getEmptyEmail,
     getById,
     getPrevEmailId,
-    getNextEmailId
+    getNextEmailId,
+    saveSentEmails
 
 };
 
@@ -37,9 +38,11 @@ function save(email) {
     else return storageService.post(EMAILS_KEY, email);
 }
 
-function saveEmailFromGoogle(email) {
+function saveSentEmails(email) {
     return storageService.post(EMAILS_KEY, email);
 }
+
+
 
 function getById(emailId) {
     return storageService.get(EMAILS_KEY, emailId);
@@ -64,18 +67,37 @@ function getById(emailId) {
 
 // }
 
-
+let loggedinUser = {
+    email: 'user@appsus.com',
+    fullname: 'Mahatma Appsus'
+}
 
 function getEmptyEmail() {
-    return {
+
+    const email = {
+        id: utilService.makeId(),
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+        to: '',
+        from: loggedinUser.email
 
     };
+    return email;
+
 }
 
 
 function _createEmail() {
     const email = {
-
+        id: utilService.makeId(),
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+        to: '',
+        from: loggedinUser.email
 
     };
     return email;
@@ -148,7 +170,7 @@ function _createEmails() {
                 id: utilService.makeId(),
                 subject: 'Message 5',
                 body: 'Would love to catch up sometimes',
-                isRead: true,
+                isRead: false,
                 sentAt: 1551133930594,
                 to: 'lala@momo.com',
                 from: loggedinUser.email
@@ -166,7 +188,7 @@ function _createEmails() {
                 id: utilService.makeId(),
                 subject: 'Message 7',
                 body: 'Would love to catch up sometimes',
-                isRead: true,
+                isRead: false,
                 sentAt: 1551133930594,
                 to: 'lala@momo.com',
                 from: loggedinUser.email

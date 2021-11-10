@@ -2,7 +2,7 @@ export default {
     template: `
         <div class="email-filter">
             <label>Search: </label>
-            <input @input="filter" v-model="filterBy.title" type="text" placeholder="Search">
+            <input @input="filter" v-model="filterBy.subject" type="text" placeholder="Search">
             <!-- <input @input="filter" v-model.number="filterBy.fromPrice" type="number" placeholder="Min price"> -->
             <!-- <input @input="filter" v-model.number="filterBy.toPrice" type="number" placeholder="Max price"> -->
         </div>
@@ -10,7 +10,7 @@ export default {
     data() {
         return {
             filterBy: {
-                title: '',
+                subject: '',
                 // fromPrice: 0,
                 // toPrice: Infinity,
             }
