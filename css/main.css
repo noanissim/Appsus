@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+/* BASIC */
+html {
+    font-family: Helvetica, Arial sans-serif;
+    color: #4f4e4e;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+
+}
+
+body {
+    margin: 0;
+    font-size: 1rem;
+    background-color: #ffffff;
+}
+
+.app-header {
+    height: 7vh;
+    background-color: rgba(0, 0, 0, 0.445);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 10px;
+}
+
+.app-footer {
+    height: 3vh;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10px;
+    font-size: 1.3em;
+
+}
+
+.app-main {
+    height: 90vh;
+    background-color: rgb(152, 164, 197);
+}
+
+.read-more-btn {
+    color: blue;
+    text-decoration: blue;
+    font-size: 20px;
+    cursor: pointer;
+}
