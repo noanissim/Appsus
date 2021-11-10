@@ -1,7 +1,7 @@
 export default {
     template: `
         <section class="home-page app-main">
-            <h3>Welcome to our Appsus!</h3>
+            <h3>Welcome to our Appsus!!!!</h3>
     
             <h3>Click on the "email" tab to see the emails!</h3>
             <router-link @click.native="scrollToTop"  to="/email">emails</router-link>
