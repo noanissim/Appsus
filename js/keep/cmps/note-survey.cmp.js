@@ -18,7 +18,7 @@ const noteImg = {
   props: ['note'],
   template: `
         <section class="">
-            <img src="note.info"/>
+            <img class="note-img" :src="note.info.url"/>
         </section>
     `,
   data() {
@@ -33,11 +33,11 @@ const noteImg = {
 const noteTodos = {
   props: ['note'],
   template: `
-        <div class="row">
-                <ul v-for="todo in note.info.todos">
-                    <li>{{todo}}</li>
+        <div class="todos-preview">
+          <li><span>{{note.info.label}}</span></li><br>
+            <ul v-for="todo in note.info.todos">
+                    <li>🔹{{todo.txt}}</li>
                 </ul>
-                
             </label>
         </div>
     `,
@@ -54,14 +54,13 @@ const noteTodos = {
 export default {
   props: ['note'],
   template: `
-    <section class="">
+    <section class="note-preview">
             <component v-for="(currCmp, idx) in cmps"
                         :key="idx"
                         :is="currCmp.type" 
                         :note="note" 
                         @setInput="setInput($event, idx)">
             </component>
-            <button type="submit">Save</button>
     </section> 
     `,
   data() {

@@ -1,18 +1,18 @@
 
 .note-preview-container{
-        background-color: rgba(0, 174, 255, 0.603);
-        color: white;
+        background-color: rgba(238, 216, 18, 0.603);
+        color: rgb(97, 97, 97);
         font-size: 20px;
         padding: 10px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
         height: 200px;
         width: 300px;
-        border-radius: 20px;
+        border-radius: 2px;
         display: flex;
         justify-content: space-between;
         cursor: pointer;
         transition: 0.2s;
-        box-shadow: -1px 2px 18px 1px rgba(0,0,0,0.93);
+        box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.26);
 }
 
 .note-list{
@@ -28,4 +28,63 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between
+}
+
+.search-input{
+font-size: 20px;
+padding: 10px;
+border: none;
+}
+
+.note-filter{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    border: 1px black solid;
+    width: 80%;
+}
+.note-filter button{
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+.note-filter img{
+    max-width: 30px;
+}
+
+.note-img {
+    max-width: 150px;
+    object-fit: fill;
+}
+
+.note-preview{
+    display: flex;
+    justify-content: center;
+}
+
+.preview-btns{
+    display: flex;
+    justify-content: space-evenly;
+align-items: center;
+
+    width: 100%;
+    border: 1px solid black;
+}
+
+.preview-btns img{
+padding: 1px;
+width: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.preview-btns input{
+    /* opacity: 0; */
+    border: none;
+}
+
+.todos-preview span{
+    font-weight: bold;
+    color: black;
 }

@@ -1,5 +1,3 @@
-import noteImg from './note-img.cmp.js'
-import noteTxt from './note.txt.cmp.js'
 import { notesService } from '../services/note-service.js'
 import noteSurvey from './note-survey.cmp.js'
 
@@ -7,28 +5,40 @@ export default {
   props: ['notes'],
   template: `
           <section>
-          <ul class="note-list">
+            
+        <ul class="note-list">
               <li  v-for="note in notes" class="note-preview-container" >
                   <note-survey :note="note"/>
-                  <div>
-                      <button @click.stop="remove(note.id)">X</button>
-                      <input type="color"/>
+                  <div class="preview-btns">
+                      <img src="img/notes/trashcan.png" @click.stop="remove(note.id)"/>
+                      <div>
+                        <!-- <img @click="openColor" src="img/notes/color.png"> -->
+                        <input ref="textColor"  type="color"/>
+                      </div>
+                      <img src="img/notes/mail.png"/>
+                      <img src="img/notes/pin.png"/>
                   </div>
               </li>
           </ul>
     </section>
       `,
   data() {
-    return {}
+    return {
+      isTxt: false,
+      isImg: false,
+      isVideo: false,
+    }
   },
   created() {},
   methods: {
     remove(noteId) {
       this.$emit('removeNote', noteId)
     },
+    openColor() {},
   },
+
   computed: {
     getNoteType() {},
   },
-  components: { noteImg, noteTxt, noteSurvey },
+  components: { noteSurvey },
 }
