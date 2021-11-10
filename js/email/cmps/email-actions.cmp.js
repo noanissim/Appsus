@@ -26,9 +26,7 @@ export default {
 
     },
 
-    methods: {
 
-    },
     computed: {
         showCount() {
             return this.unreadCount
@@ -41,7 +39,7 @@ export default {
                 if (!email.isRead) count++
                 countAll++
             })
-            let res = ((count / countAll) * 100).toFixed(2) + '%'
+            let res = ((count / countAll) * 100).toFixed(2) + '% emails not read yet'
             return res
         }
     }

@@ -42,77 +42,72 @@ export default {
         // this.emails = emailservice.query()
     },
 
+
+
     methods: {
+
         loadEmails() {
-            emailService.query().then(emails => {
-                console.log(emails)
-                this.emails = emails
-            })
+            emailService.query()
+                .then(emails => {
+                    this.emails = emails
+                    console.log(emails);
+                })
         },
-
-        methods: {
-
-            loadEmails() {
-                emailService.query()
-                    .then(emails => {
-                        console.log(emails);
-                        this.emails = emails
-                    })
-            },
-            addEmail() {
-                this.loadEmails()
-            },
-            removeEmail(id) {
-                console.log(id, 'hereeeee');
-                emailService.remove(id)
-                    .then(() => {
-                        const msg = {
-                            txt: 'Deleted succesfully',
-                            type: 'success',
-                            link: '/email'
-                        };
-                        eventBus.$emit('showMsg', msg);
-                        this.loadEmails();
-                    })
-                    .catch(err => {
-                        console.log('err', err);
-                        const msg = {
-                            txt: 'Error. Please try later',
-                            type: 'error'
-                        };
-                        eventBus.$emit('showMsg', msg);
-                    });
-            },
-            selectEmail(email) {
-                this.selectedEmail = email;
-            },
-            closeDetails() {
-                this.selectedEmail = null;
-            },
-            setFilter(filterBy) {
-                this.filterBy = filterBy;
-            }
+        addEmail() {
+            this.loadEmails()
         },
-        computed: {
-            emailsToShow() {
-                // returns emails based on the current filter
-                if (!this.filterBy) return this.emails
-                const {
-                    subject
-                } = this.filterBy
-                const searchStr = subject.toLowerCase()
-                const emailsToShow = this.emails.filter((email) => {
-                    return email.subject.toLowerCase().includes(searchStr) ||
-                        email.body.toLowerCase().includes(searchStr)
-
-
+        removeEmail(id) {
+            console.log(id, 'hereeeee');
+            emailService.remove(id)
+                .then(() => {
+                    const msg = {
+                        txt: 'Deleted succesfully',
+                        type: 'success',
+                        link: '/email'
+                    };
+                    eventBus.$emit('showMsg', msg);
+                    this.loadEmails();
+                })
+                .catch(err => {
+                    console.log('err', err);
+                    const msg = {
+                        txt: 'Error. Please try later',
+                        type: 'error'
+                    };
+                    eventBus.$emit('showMsg', msg);
                 });
-                return emailsToShow;
-            },
-            emailsCount() {
-                console.log(this.emails.length);
-            },
-
         },
+        selectEmail(email) {
+            this.selectedEmail = email;
+        },
+        closeDetails() {
+            this.selectedEmail = null;
+        },
+        setFilter(filterBy) {
+            this.filterBy = filterBy;
+        }
     },
+    computed: {
+        emailsToShow() {
+            // returns emails based on the current filter
+            if (!this.filterBy) return this.emails
+            const {
+                subject
+            } = this.filterBy
+            const searchStr = subject.toLowerCase()
+            const emailsToShow = this.emails.filter((email) => {
+                console.log(email);
+                return email.subject.toLowerCase().includes(searchStr) ||
+                    email.body.toLowerCase().includes(searchStr)
+
+
+            });
+            return emailsToShow;
+        },
+        emailsCount() {
+            console.log(this.emails.length);
+        },
+
+    },
+
 }
