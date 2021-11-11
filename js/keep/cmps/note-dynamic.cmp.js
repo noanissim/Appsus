@@ -1,9 +1,9 @@
 const noteTxt = {
   props: ['note'],
   template: `
-        <div v-if="localNote" class="text-cmp">
+        <div style="height:200px; " v-if="localNote" class="text-cmp">
           
-          <textarea class="text-area" v-model="localNote.info.txt"><span>{{localNote.info.txt}}</span></textarea>
+          <textarea class="text-area" rows="5"  v-model="localNote.info.txt"><span>{{localNote.info.txt}}</span></textarea>
         </div>
     `,
   data() {
@@ -33,7 +33,27 @@ const noteImg = {
   template: `
         <section class="img-cmp-container">
           <div  class="img-cmp">
+            <h4 class="img-title">{{note.info.title}}</h4>
             <img class="note-img" :src="note.info.url"/>
+          </div>
+        </section>
+    `,
+  data() {
+    return {}
+  },
+  methods: {
+    reportVal() {
+      this.$emit('setInput', this.selectedOpt)
+    },
+  },
+}
+const noteVideo = {
+  props: ['note'],
+  template: `
+        <section class="img-cmp-container">
+          <div  class="img-cmp">
+            <h4 class="img-title">{{note.info.label}}</h4>
+            <iframe width="300" :src="note.info.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </section>
     `,
@@ -90,13 +110,14 @@ const noteTodos = {
     },
     addNewTodo() {
       this.todoCmp.info.todos.push({ ...this.todoVal })
+      this.$emit('setInput', this.todoCmp)
     },
     setIsDone(ev, idx) {
       this.todoCmp.info.todos[idx].isChecked = ev.target.checked
       console.log('ev', ev.target.checked)
       this.reportVal(idx)
     },
-    reportVal(idx) {
+    reportVal() {
       console.log('THIS ONE', this.todoCmp.info)
       for (var i = 0; i < this.todoVal.txt.length; i++) {
         this.todoCmp.info.todos[0] = this.todoVal
@@ -138,5 +159,6 @@ export default {
     noteTxt,
     noteImg,
     noteTodos,
+    noteVideo,
   },
 }
