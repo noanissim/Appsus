@@ -10,7 +10,7 @@ export default {
         <div class="email-preview" @click="emailClicked">
             <div :class="isEmailReadImg" class="email-preview-data">
             
-            <span class="fa fa-star star-img" :class="{checked:isStar, unChecked:!isStar}" @click.stop="changeColor(email.id)"></span>
+            <span class="fa fa-star star-img" :class="{'checked-star':isStar, 'unChecked-star':!isStar}" @click.stop="changeColor(email.id)"></span>
 
             <img class="email-img" v-if="!email.isRead"  src="../../../img/email/mail.png">
             <img  class="email-img"  v-else src="../../../img/email/open-envelope.png">

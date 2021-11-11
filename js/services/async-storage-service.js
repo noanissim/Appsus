@@ -37,16 +37,6 @@ function postUnshift(entityType, newEntity) {
     })
 }
 
-function postUnshift(entityType, newEntity) {
-    newEntity.id = _makeId()
-    return query(entityType)
-        .then(entities => {
-            entities.unshift(newEntity);
-            _save(entityType, entities)
-            return newEntity;
-        })
-}
-
 function postMany(entityType, newEntities) {
     return query(entityType).then(entities => {
         entities.push(...newEntities)

@@ -84,6 +84,7 @@
     width: 100%;
     border: 1px solid black;
 
+
 }
 
 .email-preview .email-is-read {
@@ -112,11 +113,12 @@
     width: 40px;
 }
 
-span.checked {
+span.checked-star {
     color: orange;
+    user-select: none;
 }
 
-span.unChecked {
+span.unChecked-star {
     color: rgb(161, 161, 161);
 
 }

@@ -24,7 +24,7 @@ export default {
             <p>Id: {{email.id}}</p>
             <p>Star?{{isStar}} </p>
             <!-- <p>Star?{{isStar}} {{checkIfIsStarred}}</p> -->
-            <span class="fa fa-star star-img" :class="{checked:email.isStarred, unChecked:!email.isStarred}" @click="changeColor"></span>
+            <span class="fa fa-star star-img" :class="{'checked-star':email.isStarred, 'unChecked-star':!email.isStarred}" @click="changeColor"></span>
             <div class="actions-email-preview">
                     <button @click="removeEmail(email.id)" >Delete</button>
                     <button>Save as note</button>
