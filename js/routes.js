@@ -25,10 +25,6 @@ const routes = [{
         path: '/email/:emailId',
         component: emailDetails
     },
-    // {
-    //     path: '/email/inbox/:emailId?',
-    //     component: emailInbox
-    // },
 
 
 
