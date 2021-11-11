@@ -1,13 +1,13 @@
 
 .note-preview-container{
-        background-color: rgba(238, 216, 18, 0.603);
+        background-color: rgb(255, 255, 255);
         color: rgb(97, 97, 97);
         font-size: 20px;
         padding: 10px;
         /* border: 1px solid black; */
         height: 200px;
         width: 300px;
-        border-radius: 2px;
+        border-radius: 10px;
         display: flex;
         justify-content: space-between;
         cursor: pointer;
@@ -32,15 +32,18 @@
 
 .search-input{
 font-size: 20px;
+width: 76%;
 padding: 10px;
+border-radius: 20px;
 border: none;
 }
 
 .note-filter{
     display: flex;
     justify-content: space-between;
+    background-color: white;
+    border-radius: 20px;
     margin: 0 auto;
-    border: 1px black solid;
     width: 80%;
 }
 .note-filter button{
@@ -52,9 +55,13 @@ border: none;
     max-width: 30px;
 }
 
-.note-img {
+/* .note-img {
     max-width: 150px;
     object-fit: fill;
+} */
+
+.add-buttons-container{
+    /* background-color: white; */
 }
 
 .note-preview{
@@ -84,7 +91,61 @@ justify-content: center;
     border: none;
 }
 
+.todos-preview{
+    width: 100%;
+    position: relative;
+}
+
 .todos-preview span{
     font-weight: bold;
     color: black;
+}
+
+.todos-preview button{
+    position: absolute;
+    font-size: 10px;
+    top: 0;
+    right: 0;
+}
+
+.text-cmp{
+height: 100%;
+}
+.img-cmp-container{
+    width: 100%;
+}
+.img-cmp{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.img-cmp img{
+    position: relative;
+    width: 45%;
+    object-fit: fill;
+}
+
+.text-area{
+    width: 100%;
+    height: 100%;
+    border: none;
+    list-style: none;
+    
+}
+
+
+.note-dynamic{
+    height: 100%;
+}
+
+.todo-checkbox{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.checked{
+text-decoration: line-through;
 }

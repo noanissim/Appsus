@@ -42,156 +42,211 @@ export default {
             isDraft: null
         }
     },
-    created() {
+    addEmail() {
         this.loadEmails()
-        // this.emails = emailservice.query()
     },
 
-
-
     methods: {
-
         loadEmails() {
-            emailService.query()
-                .then(emails => {
-                    this.emails = emails
-                    console.log(emails);
-                })
+            emailService.query().then(emails => {
+                this.emails = emails
+                console.log(emails)
+            })
         },
         addEmail() {
             this.loadEmails()
         },
-        changeStar(isStar, id) {
-            console.log(isStar, 'thats good');
-            console.log(id, 'thats good');
-            emailService.getById(id)
-                .then(res => {
-                    console.log(res);
-                    res.isStarred = isStar
-                    emailService.save(res)
-                })
-            this.loadEmails()
-        },
         removeEmail(id) {
-            console.log(id, 'hereeeee');
-            emailService.remove(id)
+            console.log(id, 'hereeeee')
+            emailService
+                .remove(id)
                 .then(() => {
-                    const msg = {
-                        txt: 'Deleted succesfully',
-                        type: 'success',
-                        link: '/email'
-                    };
-                    eventBus.$emit('showMsg', msg);
-                    this.loadEmails();
-                })
-                .catch(err => {
-                    console.log('err', err);
-                    const msg = {
-                        txt: 'Error. Please try later',
-                        type: 'error'
-                    };
-                    eventBus.$emit('showMsg', msg);
-                });
-        },
-        selectEmail(email) {
-            this.selectedEmail = email;
-        },
-        closeDetails() {
-            this.selectedEmail = null;
-        },
-        setFilter(filterBy) {
-            this.filterBy = filterBy;
-        },
-        stateClicked(state) {
-            console.log(state);
-            if (state === 'isAll') this.stateBy = null
-            else {
-                this[state] = true
-                this.stateBy = state
-                console.log('this.stateBy', this.stateBy);
-                // console.log(this.isInbox);
-            }
+                        const msg = {
+                            txt: 'Deleted succesfully',
+                            type: 'success',
+                            link: '/email',
+                        }
+                        eventBus.$emit('showMsg', msg)
+                        this.loadEmails() <<
+                            << << < HEAD
+                    },
+                    changeStar(isStar, id) {
+                        console.log(isStar, 'thats good');
+                        console.log(id, 'thats good');
+                        emailService.getById(id)
+                            .then(res => {
+                                console.log(res);
+                                res.isStarred = isStar
+                                emailService.save(res)
+                            })
+                        this.loadEmails()
+                    },
+                    removeEmail(id) {
+                        console.log(id, 'hereeeee');
+                        emailService.remove(id)
+                            .then(() => {
+                                const msg = {
+                                    txt: 'Deleted succesfully',
+                                    type: 'success',
+                                    link: '/email'
+                                };
+                                eventBus.$emit('showMsg', msg);
+                                this.loadEmails();
+                            })
+                            .catch(err => {
+                                console.log('err', err);
+                                const msg = {
+                                    txt: 'Error. Please try later',
+                                    type: 'error'
+                                };
+                                eventBus.$emit('showMsg', msg);
+                            });
+                    },
+                    selectEmail(email) {
+                        this.selectedEmail = email;
+                    },
+                    closeDetails() {
+                        this.selectedEmail = null;
+                    },
+                    setFilter(filterBy) {
+                        this.filterBy = filterBy;
+                    },
+                    stateClicked(state) {
+                        console.log(state);
+                        if (state === 'isAll') this.stateBy = null
+                        else {
+                            this[state] = true
+                            this.stateBy = state
+                            console.log('this.stateBy', this.stateBy);
+                            // console.log(this.isInbox);
+                        }
+
+                    }
+                },
+                computed: {
+                    emailsToShow() {
+                        // returns emails based on the current filter
+
+                        if (!this.filterBy ||
+                            (!this.filterBy.subject &&
+                                this.filterBy.selectOption === 'all' &&
+                                !this.stateBy)
+                        )
+                            return this.emails
+
+                        const {
+                            subject,
+                        } = this.filterBy
+                        console.log(subject);
+                        const searchStr = subject.toLowerCase()
+                        let emailsToShow
+
+                        emailsToShow = this.emails.filter((email) => {
+
+                            let ans1 = ((email.subject.toLowerCase().includes(searchStr) ||
+                                email.body.toLowerCase().includes(searchStr)) || email.from.fullname.toLowerCase().includes(searchStr))
+                            let ans2 = (email.isRead === true && 'read' === this.filterBy.selectOption) ||
+                                (email.isRead === false && 'unread' === this.filterBy.selectOption) ||
+                                ('all' === this.filterBy.selectOption)
+                            let ans3 = ((!this.stateBy) ||
+                                (this.stateBy === 'isInbox' && email.to.email === 'user@appsus.com') ||
+                                (this.stateBy === 'isStar' && email.isStarred == true) ||
+                                (this.stateBy === 'isSent' && email.from.email === 'user@appsus.com') ||
+                                (this.stateBy === 'isDraft' && email.sentAt === 0))
+                            // console.log(ans1);
+                            // console.log(ans2);
+                            return ans1 && ans2 && ans3
+                        });
+
+                        console.log('emailsToShow', emailsToShow);
+                        return emailsToShow;
+                    },
+
+                    emailsCount() {
+                        console.log(this.emails.length);
+                    },
+
+                    setFilterInbox(ev, par) {
+                        console.log('bla');
+                        console.log(ev);
+                        console.log(par);
+                    }
+
+                },
 
         }
-    },
-    computed: {
-        emailsToShow() {
-            // returns emails based on the current filter
 
-            if (!this.filterBy ||
-                (!this.filterBy.subject &&
-                    this.filterBy.selectOption === 'all' &&
-                    !this.stateBy)
+
+        // let ans3
+        // console.log('this.stateBy', this.stateBy);
+        // if (!this.stateBy) {
+        //     console.log('no state');
+        //     ans3 = email
+        // }
+
+        // if (this.stateBy === 'isInbox' && email.to === 'user@appsus.com') {
+        //     ans3 = email
+        //     console.log('isInbox');
+        //     console.log(email.to);
+
+        // } else if (this.stateBy === 'isStar' && email.isStarred == true) {
+        //     ans3 = email
+        //     console.log('isStar');
+        //     console.log(email.isStarred);
+
+        // } else if (this.stateBy === 'isSent' && email.from === 'user@appsus.com') {
+        //     console.log('isSent');
+        //     ans3 = email
+        //     console.log(email.sentAt);
+
+        // } else if (this.stateBy === 'isDraft' && email.sentAt === 0) {
+        //     console.log('isDraft');
+        //     ans3 = email
+        //     console.log(email.sentAt);
+        // }
+        ===
+        === =
+    })
+.catch(err => {
+    console.log('err', err)
+    const msg = {
+        txt: 'Error. Please try later',
+        type: 'error',
+    }
+    eventBus.$emit('showMsg', msg)
+})
+},
+selectEmail(email) {
+        this.selectedEmail = email
+    },
+    closeDetails() {
+        this.selectedEmail = null
+    },
+    setFilter(filterBy) {
+        this.filterBy = filterBy
+    },
+},
+computed: {
+    emailsToShow() {
+        // returns emails based on the current filter
+        if (!this.filterBy) return this.emails
+        const {
+            subject
+        } = this.filterBy
+        const searchStr = subject.toLowerCase()
+        const emailsToShow = this.emails.filter(email => {
+            console.log(email)
+            return (
+                email.subject.toLowerCase().includes(searchStr) ||
+                email.body.toLowerCase().includes(searchStr)
             )
-                return this.emails
-
-            const {
-                subject,
-            } = this.filterBy
-            console.log(subject);
-            const searchStr = subject.toLowerCase()
-            let emailsToShow
-
-            emailsToShow = this.emails.filter((email) => {
-
-                let ans1 = ((email.subject.toLowerCase().includes(searchStr) ||
-                    email.body.toLowerCase().includes(searchStr)) || email.from.fullname.toLowerCase().includes(searchStr))
-                let ans2 = (email.isRead === true && 'read' === this.filterBy.selectOption) ||
-                    (email.isRead === false && 'unread' === this.filterBy.selectOption) ||
-                    ('all' === this.filterBy.selectOption)
-                let ans3 = ((!this.stateBy) ||
-                    (this.stateBy === 'isInbox' && email.to.email === 'user@appsus.com') ||
-                    (this.stateBy === 'isStar' && email.isStarred == true) ||
-                    (this.stateBy === 'isSent' && email.from.email === 'user@appsus.com') ||
-                    (this.stateBy === 'isDraft' && email.sentAt === 0))
-                // console.log(ans1);
-                // console.log(ans2);
-                return ans1 && ans2 && ans3
-            });
-
-            console.log('emailsToShow', emailsToShow);
-            return emailsToShow;
-        },
-
-        emailsCount() {
-            console.log(this.emails.length);
-        },
-
-        setFilterInbox(ev, par) {
-            console.log('bla');
-            console.log(ev);
-            console.log(par);
-        }
-
+        })
+        return emailsToShow
     },
-
-}
-
-
-// let ans3
-// console.log('this.stateBy', this.stateBy);
-// if (!this.stateBy) {
-//     console.log('no state');
-//     ans3 = email
-// }
-
-// if (this.stateBy === 'isInbox' && email.to === 'user@appsus.com') {
-//     ans3 = email
-//     console.log('isInbox');
-//     console.log(email.to);
-
-// } else if (this.stateBy === 'isStar' && email.isStarred == true) {
-//     ans3 = email
-//     console.log('isStar');
-//     console.log(email.isStarred);
-
-// } else if (this.stateBy === 'isSent' && email.from === 'user@appsus.com') {
-//     console.log('isSent');
-//     ans3 = email
-//     console.log(email.sentAt);
-
-// } else if (this.stateBy === 'isDraft' && email.sentAt === 0) {
-//     console.log('isDraft');
-//     ans3 = email
-//     console.log(email.sentAt);
-// }
+    emailsCount() {
+        console.log(this.emails.length)
+    },
+},
+},
+} >>>
+>>> > 819023 b6d97e666821e6faf590ab3554aeb48bed
