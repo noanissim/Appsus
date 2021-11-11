@@ -4,6 +4,9 @@ export const notesService = {
   remove,
   save,
   addNewNote,
+  updateNote,
+  getById,
+  changeBgcColor,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -77,6 +80,7 @@ function _createNotes() {
     ]
     saveToStorage(NOTES_KEY, notes)
   }
+  console.log(notes)
   return notes
 }
 
@@ -92,6 +96,7 @@ function getImgNote(url) {
     isPinned: true,
   }
 }
+
 function getTxtNote(txt) {
   return {
     type: 'note-txt',
@@ -119,6 +124,13 @@ function addNewNote(type, value) {
   return storageService.post(NOTES_KEY, note)
 }
 
+function changeBgcColor(noteId, color) {
+  return getById(noteId).then(note => {
+    note.style.backgroundColor = color
+    storageService.put(NOTES_KEY, note)
+  })
+}
+
 function query() {
   return storageService.query(NOTES_KEY)
 }
@@ -126,9 +138,12 @@ function query() {
 function remove(id) {
   return storageService.remove(NOTES_KEY, id)
 }
+function updateNote(id) {
+  return storageService.put(NOTES_KEY, id)
+}
 
-function getById(bookId) {
-  return storageService.get(NOTES_KEY, notesId).then(notes => notes)
+function getById(noteId) {
+  return storageService.get(NOTES_KEY, noteId)
 }
 
 function saveToStorage(key, value) {

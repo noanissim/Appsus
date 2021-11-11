@@ -3,10 +3,13 @@ export default {
   template: `
             <div class="note-filter">
                 <input class="search-input" v-model="value" @keyup.enter="addNote" @input="newNote" type="text" :placeholder="placeHolder">
-                <div>
+                <div class="add-buttons-container">
                     <button @click="onChangeType($event,'txt')" ><img src="../img/notes/txt.png"/></button>
                     <button @click="onChangeType($event,'img')"><img src="../img/notes/gallery.png"/></button>
                     <button @click="onChangeType($event,'video')"><img src="../img/notes/video.png"/></button>
+                    <button @click="onChangeType($event,'todo')"><img src="img/notes/list.png"/></button>
+                    
+
                 </div>
             </div>
         `,
@@ -23,12 +26,13 @@ export default {
     },
     onChangeType(ev, type) {
       this.type = type
-      if (type === 'img' || type === 'video') this.placeHolder = 'Pls enter URL'
+      if (type === 'img') this.placeHolder = 'Pls enter URL...'
+      else if (type === 'video') this.placeHolder = 'Pls enter video URL...'
+      else if (type === 'todo') this.placeHolder = 'Make yourself a list!'
       else this.placeHolder = 'Whats on your mind?'
       console.log(this.type)
     },
     addNote() {
-      console.log(this.value)
       notesService.addNewNote(this.type, this.value).then(res => {
         this.$emit('noteAdded')
       })

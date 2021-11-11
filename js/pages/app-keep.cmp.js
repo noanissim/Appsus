@@ -12,10 +12,9 @@ export default {
            <!-- <header></header> -->
            <!-- search with filter -->
             <!-- <note-filter @filtered="setFilter"/> -->
-          <new-note @noteAdded="getNotes"/>
+          <new-note  @noteAdded="getNotes"/>
             <!-- <book-add @bookAdded="addBook" /> -->
-
-            <note-preview  @removeNote="removeNote" :notes="notesToShow"/>
+            <note-preview @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
     `,
   data() {
@@ -31,7 +30,6 @@ export default {
     getNotes() {
       notesService.query().then(notes => {
         this.notes = notes
-        console.log(this.notes)
       })
     },
     setFilter(filterBy) {
@@ -39,6 +37,12 @@ export default {
     },
     removeNote(id) {
       notesService.remove(id).then(notes => {
+        this.getNotes()
+      })
+    },
+    updateNote(newNote) {
+      console.log('HERE', newNote)
+      notesService.save(newNote).then(note => {
         this.getNotes()
       })
     },
