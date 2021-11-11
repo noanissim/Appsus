@@ -35,11 +35,11 @@ function remove(emailId) {
 
 function save(email) {
     if (email.id) return storageService.put(EMAILS_KEY, email);
-    else return storageService.post(EMAILS_KEY, email);
+    else return storageService.postUnshift(EMAILS_KEY, email);
 }
 
 function saveSentEmails(email) {
-    return storageService.post(EMAILS_KEY, email);
+    return storageService.postUnshift(EMAILS_KEY, email);
 }
 
 
@@ -74,30 +74,32 @@ let loggedinUser = {
 
 function getEmptyEmail() {
 
-    const email = {
-        id: utilService.makeId(),
-        subject: '',
-        body: '',
-        isRead: false,
-        sentAt: Date.now(),
-        to: '',
-        from: loggedinUser.email
-
-    };
-    return email;
+    return _createEmail();
 
 }
 
 
 function _createEmail() {
+    let loggedinUser = {
+        email: 'user@appsus.com',
+        fullname: 'Appsus Admin'
+    }
     const email = {
         id: utilService.makeId(),
         subject: '',
         body: '',
         isRead: false,
+        isStarred: false,
+        lables: [],
         sentAt: Date.now(),
-        to: '',
-        from: loggedinUser.email
+        to: {
+            email: 'user@user.com',
+            fullname: ''
+        },
+        from: {
+            email: loggedinUser.email,
+            fullname: 'Appsus Admin'
+        }
 
     };
     return email;
@@ -125,83 +127,121 @@ function getPrevEmailId(emailId) {
 function _createEmails() {
     let loggedinUser = {
         email: 'user@appsus.com',
-        fullname: 'Mahatma Appsus'
+        fullname: 'Appsus Admin'
     }
+    let otherUser1 = {
+        email: 'kim@gmail.com',
+        fullname: 'Kim Kardashian'
+    }
+    let otherUser2 = {
+        email: 'khloe@gmail.com',
+        fullname: 'Khloe Kardashian'
+    }
+    let otherUser3 = {
+        email: 'kourtney@gmail.com',
+        fullname: 'Kourtney Kardashian'
+    }
+    let otherUser4 = {
+        email: 'kris@gmail.com',
+        fullname: 'Kris Jenner'
+    }
+    let otherUser5 = {
+        email: 'scott@gmail.com',
+        fullname: 'Scott Disick'
+    }
+
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
         console.log('here');
         emails = [{
                 id: utilService.makeId(),
                 subject: 'Message 1',
-                body: 'Would',
+                body: 'Skims is the best',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'momo@momo.com',
-                from: loggedinUser.email
+                to: otherUser1,
+                from: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 2',
-                body: 'Would love to catch up sometimes',
+                body: 'Of course you do because you get 10%. That is sick.',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                from: 'popo@momo.com',
-                to: loggedinUser.email
+                from: otherUser2,
+                to: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 3',
-                body: 'Would love to catch up sometimes lorem lorem lorem ',
+                body: 'You\'re doing amazing sweetie',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'riri@momo.com',
-                from: loggedinUser.email
+                to: otherUser4,
+                from: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 4',
-                body: 'love',
+                body: 'Kim, would you stop taking pictures of yourself? Your sister’s going to jail',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'kiki@momo.com',
-                from: loggedinUser.email
+                to: otherUser4,
+                from: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 5',
-                body: 'Would love to catch up sometimes',
+                body: 'Kim, there’s people that are dying',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'lala@momo.com',
-                from: loggedinUser.email
+                to: otherUser3,
+                from: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 6',
-                body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quisquam inventore molestiae voluptatum veritatis placeat enim dolor soluta dolorum et omnis, cum necessitatibus possimus unde. Quaerat facilis repellendus reiciendis hic!',
+                body: 'You know, I’ve realized that I’m probably just perfect and it’s everybody else around me that’s got issues',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'lala@momo.com',
-                from: loggedinUser.email
+                to: otherUser5,
+                from: loggedinUser
             },
             {
                 id: utilService.makeId(),
                 subject: 'Message 7',
-                body: 'Would love to catch up sometimes',
+                body: 'Aunty Kris, it’s me, Todd Kraines',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'lala@momo.com',
-                from: loggedinUser.email
+                to: loggedinUser,
+                from: otherUser5,
             },
             {
                 id: utilService.makeId(),
-                subject: 'Message 5',
-                body: 'Would love to catch up sometimes',
+                subject: 'Message 8',
+                body: 'When my kids are happy, I am happy',
                 isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
-                to: 'lala@momo.com',
-                from: loggedinUser.email
+                to: loggedinUser,
+                from: otherUser4
             },
+
         ]
 
         utilService.saveToStorage(EMAILS_KEY, emails);

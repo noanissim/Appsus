@@ -23,6 +23,7 @@ body {
 
 .app-header {
     height: 7vh;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.445);
     display: flex;
     justify-content: space-between;

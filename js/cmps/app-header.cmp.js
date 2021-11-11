@@ -2,7 +2,8 @@ export default {
   template: `
         <header class="app-header">
             <div class="logo">
-             <a  class="logo-link" href="/"><h3>Appsus</h3></a>
+            <router-link @click.native="scrollToTop"  to="/">Appsus</router-link>
+
              </div>
              <nav class="main-nav">
             <router-link @click.native="scrollToTop"  to="/">Home</router-link>

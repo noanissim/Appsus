@@ -7,7 +7,7 @@ import {
 
 
 export default {
-    props: [''],
+    props: ['isStar'],
     components: {
 
     },
@@ -16,11 +16,15 @@ export default {
            <div class="email-details-box">
             
             <p>Subject: {{email.subject}}</p>
-            <p>From: {{email.from}}</p>
-            <p>{{email.body}}</p>
+            <p>From: {{email.from.fullname}}, {{email.from.email}}</p>
+            <p>To: {{email.to.fullname}}, {{email.to.email}}</p>
+            <p>Body: {{email.body}}</p>
             <p :isRead="isEmailRead">Is read: {{email.isRead}}</p>
-            <!-- <p>Sent at: {{convertToTime}}</p> -->
-            <!-- <p>Id: {{email.id}}</p> -->
+            <p>Sent at: {{convertToTime}}</p>
+            <p>Id: {{email.id}}</p>
+            <p>Star?{{isStar}} </p>
+            <!-- <p>Star?{{isStar}} {{checkIfIsStarred}}</p> -->
+            <span class="fa fa-star star-img" :class="{checked:email.isStarred, unChecked:!email.isStarred}" @click="changeColor"></span>
             <div class="actions-email-preview">
                     <button @click="removeEmail(email.id)" >Delete</button>
                     <button>Save as note</button>
@@ -68,6 +72,7 @@ export default {
                 email.isRead = true
                 this.email = email
                 emailService.save(email)
+                // if (email.isRead === true)
             })
             .catch(err => {
                 console.log(err);
@@ -88,6 +93,12 @@ export default {
         scrollToTop() {
             window.scrollTo(0, 0);
         },
+        changeColor() {
+            // this.review.rate = num;
+
+            this.email.isStarred = true
+            console.log('hello', this.email)
+        }
     },
     computed: {
         convertToTime() {
@@ -97,7 +108,14 @@ export default {
             return event
         },
         isEmailRead() {
-            console.log(this.email.isRead);
+            // console.log(this.email.isRead);
+        },
+        checkIfIsStarred() {
+            return emailService.getById(this.email.id)
+                .then(res => {
+                    console.log(res);
+                    return res.isStarred
+                })
         }
     }
 }

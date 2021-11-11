@@ -1,15 +1,22 @@
 export default {
     template: `
         <div class="email-filter">
+           
             <label>Search: </label>
             <input @input="filter" v-model="filterBy.subject" type="text" placeholder="Search">
+            <select @change="filter" v-model="filterBy.selectOption">
+                <option value="all">All</option>
+                <option value="read">Read</option>
+                <option value="unread">Unread</option>
+            </select>
+            
         </div>
     `,
     data() {
         return {
             filterBy: {
                 subject: '',
-                // fromPrice: 0,
+                selectOption: 'all',
                 // toPrice: Infinity,
             }
         };
@@ -20,8 +27,10 @@ export default {
                 ...this.filterBy
             });
             //deep copy
+            console.log(this.filterBy.selectOption);
             console.log(JSON.parse(JSON.stringify(this.filterBy)));
             this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)));
-        }
+        },
+
     }
 }

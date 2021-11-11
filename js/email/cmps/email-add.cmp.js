@@ -7,9 +7,9 @@ export default {
         <section class="email-edit app-main">
             <h3>Add a new email</h3>
             <form v-if="emailToEdit" @submit.prevent="save" >
-                <input v-model="emailToEdit.to" type="text" placeholder="subject">
-                <input v-model="emailToEdit.subject" type="text" placeholder="body">
-                <input v-model="emailToEdit.body" type="text" placeholder="to">
+                <input v-model="emailToEdit.to.fullname" type="text" placeholder="to">
+                <input v-model="emailToEdit.subject" type="text" placeholder="subject">
+                <input v-model="emailToEdit.body" type="text" placeholder="body">
                 <button>Save</button>
             </form>
         </section>

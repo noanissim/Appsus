@@ -8,29 +8,31 @@ export default {
     },
     template: `
         <div class="email-preview" @click="emailClicked">
-            <div :class="test1" class="email-preview-data">
+            <div :class="isEmailReadImg" class="email-preview-data">
+            
+            <span class="fa fa-star star-img" :class="{checked:isStar, unChecked:!isStar}" @click.stop="changeColor(email.id)"></span>
+
             <img class="email-img" v-if="!email.isRead"  src="../../../img/email/mail.png">
             <img  class="email-img"  v-else src="../../../img/email/open-envelope.png">
-            <p>From: {{email.from}}</p>            
-            <p>To: {{email.to}}</p>            
-            <p>Subject: {{email.subject}}</p>
+
+            <p><strong>From:</strong> {{email.from.fullname}}</p>            
+            <p>{{email.subject}}</p>
             <long-text :txt="email.body"></long-text>
-            <p>Is read: {{email.isRead}}</p>
-           
-            <p>Sent at: {{convertToTime}}</p>
-            <!-- <p>Id: {{email.id}}</p> -->
+            <p>Is read: {{email.isRead}}</p>           
+            <!-- <p>Is starred: {{email.isStarred}}</p>   -->
+            <p>Sent at: {{convertToTimeShort}}</p>
            
             </div>
-            <div :class="test1" class="actions-email-preview">
+            <div :class="isEmailReadImg" class="actions-email-preview">
                     <button @click="removeEmail(email.id)" >Delete</button>
                     <!-- <button @click="select(email)" >Details</button> -->
-                    <router-link class="btn btn-open-email" @click.native="scrollToTop" :to="'/email/'+email.id">Open</router-link>
+                    <router-link :isStar="isStar"  class="btn btn-open-email" @click.native="scrollToTop" :to="'/email/'+email.id">Open</router-link>
             </div>
         </div>
     `,
     data() {
         return {
-
+            isStar: this.email.isStarred
         }
     },
 
@@ -48,9 +50,14 @@ export default {
         },
         emailClicked(ev) {
             ev.stopPropagation();
-            console.log(ev);
-            this.email.isRead = true
+            // console.log(ev);
+            // this.email.isRead = true
             console.log(this.email);
+        },
+        changeColor(emailId) {
+            this.isStar = !this.isStar
+            this.$emit('changeStar', this.isStar, emailId);
+
         }
     },
     computed: {
@@ -60,8 +67,15 @@ export default {
             })
             return event
         },
-        test1() {
+        isEmailReadImg() {
             return (this.email.isRead) ? 'email-is-read' : ''
+        },
+        convertToTimeShort() {
+            var date = new Date(parseInt(this.email.sentAt));
+            return date.toLocaleTimeString(navigator.language, {
+                hour: '2-digit',
+                minute: '2-digit',
+            });
         }
 
     }

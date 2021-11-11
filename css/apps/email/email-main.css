@@ -20,6 +20,7 @@
     background-color: rgb(230, 230, 230);
     flex: 3;
     min-height: 100%;
+    width: fit-content;
 }
 
 .email-list-ul {
@@ -36,6 +37,8 @@
     gap: 10px;
     background-color: rgb(233, 233, 233);
     min-height: 100%;
+    width: fit-content;
+    flex-wrap: wrap;
     flex: 1;
     border: 1px solid black
 }
@@ -45,8 +48,7 @@
 }
 
 /*email-actions*/
-.btn,
-button {
+.btn-action {
     text-decoration: none;
     color: #1e1e1e;
     background-color: rgb(255, 255, 255);
@@ -54,7 +56,26 @@ button {
     padding: 10px;
     border-radius: 15px;
     font-size: 1em;
+    /* width: 100%; */
+    cursor: pointer;
 
+}
+
+
+.clicked {
+    background-color: violet;
+}
+
+
+#myProgress {
+    width: 80%;
+    background-color: grey;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background-color: rgb(235, 138, 11);
 }
 
 /*email-preview*/
@@ -66,11 +87,11 @@ button {
 }
 
 .email-preview .email-is-read {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(212, 211, 211);
 }
 
 .actions-email-preview .email-is-read {
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(212, 211, 211);
 }
 
 .email-preview-data p {
@@ -83,8 +104,21 @@ button {
 
 }
 
+.star-img {
+    font-size: 40px;
+}
+
 .email-img {
-    width: 7%;
+    width: 40px;
+}
+
+span.checked {
+    color: orange;
+}
+
+span.unChecked {
+    color: rgb(161, 161, 161);
+
 }
 
 
@@ -98,4 +132,103 @@ button {
     margin: 30px auto;
     height: fit-content;
     padding: 10px;
+}
+
+
+
+
+
+/* BP */
+/* Mobile Only */
+
+
+/*extra small*/
+@media (max-width: 640px) {
+
+    /* main-email-page */
+    .app-email {
+        height: 90%;
+        text-align: center;
+        margin: 20px;
+    }
+
+    .main-email-page {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 70%;
+        margin: auto;
+        width: 100%;
+        min-width: fit-content;
+
+
+    }
+
+    .email-list {
+        background-color: rgb(230, 230, 230);
+        /* flex: 3; */
+        min-height: 100%;
+        /* width: fit-content; */
+        display: flex;
+        width: 100%;
+
+    }
+
+    .email-list-ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex: 1;
+
+    }
+
+    .email-actions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        background-color: rgba(230, 230, 230, 0.726);
+        min-height: 100%;
+        /* flex: 1; */
+
+        border: 1px solid black
+    }
+
+    .email-actions>* {
+        margin-block: 10px;
+    }
+
+    /*email-actions*/
+    .btn,
+    button {
+        text-decoration: none;
+        color: #1e1e1e;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid lightgray;
+        padding: 5px;
+        border-radius: 7px;
+        font-size: 1em;
+        cursor: pointer;
+
+    }
+
+
+    .btn:focus {
+        background-color: rgb(247, 255, 187);
+
+    }
+
+
+
+    #myProgress {
+        width: 80%;
+        background-color: grey;
+    }
+
+    #myBar {
+        width: 1%;
+        height: 30px;
+        background-color: rgb(235, 138, 11);
+    }
+
 }

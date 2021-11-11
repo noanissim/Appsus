@@ -2,7 +2,7 @@ export default {
     props: ['txt'],
     template: `
         <div class="long-text">
-            <p>Body:
+            <p>
                 <span>{{showText}} 
                     <span 
                         v-if="isTextLong" 

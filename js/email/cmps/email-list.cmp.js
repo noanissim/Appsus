@@ -9,7 +9,7 @@ export default {
     <section class="email-list">
         <ul class="email-list-ul">
             <li v-for="email in emails" :key="email.id" class="email-preview-container" >
-                <email-preview :email="email" @removeEmail="removeEmail" />
+                <email-preview :email="email" @removeEmail="removeEmail" @changeStar="changeStar" />
                 
             </li>
         </ul>
@@ -31,6 +31,10 @@ export default {
             console.log(emailId, 'i remove this');
             this.$emit('removeEmail', emailId);
         },
+        changeStar(isStar, id) {
+            console.log(isStar, 'is star?');
+            this.$emit('changeStar', isStar, id);
+        }
     },
 
 };
