@@ -1,6 +1,10 @@
 import {
     eventBus
 } from '../../services/event-bus-service.js';
+// import {
+//     eventBus
+// } from '../../../img/email/send-message.png';
+
 
 export default {
     props: ['emails'],
@@ -9,21 +13,40 @@ export default {
     },
     template: `
     <section class="email-actions">
-        <router-link class="btn btn-compose" to="/email/add">+ Compose</router-link>
-        <!-- <router-link class="btn btn-inbox" to="/email/inbox">Inbox</router-link> -->
+        <div class="email-actions-container">
 
-        <button class="btn btn-action" :class="{clicked:state.isAll}"  @click="setFilterAll">All</button>
-        <button class="btn btn-action" :class="{clicked:state.isInbox}" @click="setFilterInbox">Inbox</button>
-        <button class="btn btn-action" :class="{clicked:state.isStar}" @click="setFilterStarred">Starred</button>
-        <button class="btn btn-action" :class="{clicked:state.isSent}" @click="setFilterSent">Sent Emails</button>
-        <button class="btn btn-action" :class="{clicked:state.isDraft}" @click="setFilterDrafts">Drafts</button>
-        
-        <p>{{unreadCountFunc}}% unread emails</p>
+                <router-link class="btn btn-action btn-compose" to="/email/add">
+                <img src="../../../img/email/plus.png" class="action-img">    
+                Compose</router-link>
 
-        <div id="myProgress">
-            <div id="myBar" :style="calcStyle"></div>
+                <button class="btn btn-action" :class="{clicked:state.isAll}"  @click="setFilterAll">
+                <img src="../../../img/email/mail (2).png" class="action-img">    
+                All</button>
+
+                <button class="btn btn-action" :class="{clicked:state.isInbox}" @click="setFilterInbox">
+                <img src="../../../img/email/inbox.png" class="action-img">    
+                Inbox</button>
+
+                <button class="btn btn-action" :class="{clicked:state.isStar}" @click="setFilterStarred">
+                <img src="../../../img/email/star.png" class="action-img">    
+                Starred</button>
+
+                <button class="btn btn-action" :class="{clicked:state.isSent}" @click="setFilterSent">
+                <img src="../../../img/email/mail (1).png" class="action-img">    
+                Sent</button>
+
+                <button class="btn btn-action" :class="{clicked:state.isDraft}" @click="setFilterDrafts">
+                <img src="../../../img/email/draft.png" class="action-img">    
+                Drafts</button>
+
+                <div class="progress-p">{{unreadCountFunc}}% unread emails</div>
+                <div id="myProgress">
+                    <div id="myBar" :style="calcStyle"></div>
+                </div>
+            
         </div>
 
+       
     </section>
     `,
     data() {

@@ -19,7 +19,6 @@ export default {
     },
     template: `
        <section class="app-main app-email">
-           <h1>app-email</h1>
            <email-filter @filtered="setFilter"/>
            <section class="main-email-page">
                 <email-actions  v-if="emails" :emails="emailsToShow" @stateClicked="stateClicked"/>

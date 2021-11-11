@@ -1,82 +1,128 @@
 /*Email*/
-
 /* main-email-page */
 .app-email {
     height: 90%;
     text-align: center;
-    margin-block: 20px;
-}
-
-.main-email-page {
-    display: flex;
-    flex-wrap: wrap;
-    height: 70%;
-    margin: auto;
-    width: 90%;
-
-}
-
-.email-list {
-    background-color: rgb(230, 230, 230);
-    flex: 3;
-    min-height: 100%;
-    width: fit-content;
+    margin: 20px;
 }
 
 .email-list-ul {
     list-style: none;
     margin: 0;
     padding: 0;
-
-}
-
-.email-actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    background-color: rgb(233, 233, 233);
-    min-height: 100%;
-    width: fit-content;
-    flex-wrap: wrap;
     flex: 1;
-    border: 1px solid black
 }
 
-.email-actions>* {
-    margin-block: 10px;
-}
+
 
 /*email-actions*/
+.email-actions-container {
+    height: 50vh;
+    width: 100%;
+    margin-block: 0px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+}
+
 .btn-action {
     text-decoration: none;
     color: #1e1e1e;
     background-color: rgb(255, 255, 255);
-    border: 1px solid lightgray;
-    padding: 10px;
-    border-radius: 15px;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 5px;
     font-size: 1em;
-    /* width: 100%; */
+    border-radius: 7px;
     cursor: pointer;
-
+    text-align: left;
+    min-width: 70%;
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
 }
 
-
-.clicked {
-    background-color: violet;
+.email-actions>.btn {
+    border: none;
+    border: 1px solid white;
+    width: 70%;
 }
 
+.btn-action:hover {
+    border: 1px solid lightgray;
+    background-color: rgb(212, 212, 212);
+}
 
 #myProgress {
-    width: 80%;
+    width: 70%;
     background-color: grey;
 }
 
 #myBar {
     width: 1%;
     height: 30px;
-    background-color: rgb(235, 138, 11);
+    background-color: rgb(70, 209, 228);
 }
+
+.progress-p {
+    max-width: 70%;
+    margin: 15px;
+
+}
+
+.clicked {
+    background-color: rgb(230, 230, 230);
+}
+
+.action-img {
+    width: 2em;
+    height: 2em;
+    display: inline-block;
+    margin: 0;
+}
+
+.btn-compose>img {
+    width: 3em;
+    height: 3em;
+
+}
+
+.btn-compose {
+    box-shadow: 0px 0px 12px 3px rgba(0, 0, 0, 0.527);
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+/*Email-filter*/
+.search-input {
+    width: 260px;
+    padding: 5px;
+    margin: 10px;
+    outline: none;
+    border: 2px solid #999999;
+    border-radius: 5px;
+    background-color: #FBFBFB;
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 3px 3px;
+}
+
+.select-dropdown {
+    position: relative;
+    background-color: #ffffff;
+    border: 2px solid #999999;
+    border-radius: 4px;
+    padding: 5px;
+    -webkit-appearance: none;
+
+}
+
+
+
 
 /*email-preview*/
 .email-preview {
@@ -124,7 +170,6 @@ span.unChecked-star {
 }
 
 
-
 /*email-details*/
 .email-details-box {
     width: 70%;
@@ -136,53 +181,37 @@ span.unChecked-star {
     padding: 10px;
 }
 
-
-
-
-
 /* BP */
 /* Mobile Only */
 
 
-/*extra small*/
+/*small*/
 @media (max-width: 640px) {
 
     /* main-email-page */
-    .app-email {
+    /* .app-email {
         height: 90%;
         text-align: center;
         margin: 20px;
-    }
+    } */
 
     .main-email-page {
         display: flex;
-        flex-direction: column;
         flex-wrap: wrap;
+        flex-direction: column;
         height: 70%;
-        margin: auto;
         width: 100%;
         min-width: fit-content;
-
-
+        justify-content: space-between;
     }
 
     .email-list {
         background-color: rgb(230, 230, 230);
-        /* flex: 3; */
         min-height: 100%;
-        /* width: fit-content; */
         display: flex;
         width: 100%;
-
     }
 
-    .email-list-ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        flex: 1;
-
-    }
 
     .email-actions {
         display: flex;
@@ -192,45 +221,82 @@ span.unChecked-star {
         background-color: rgba(230, 230, 230, 0.726);
         min-height: 100%;
         /* flex: 1; */
-
-        border: 1px solid black
+        /* border: 1px solid black */
     }
 
-    .email-actions>* {
-        margin-block: 10px;
+
+}
+
+
+
+
+
+
+
+@media (min-width: 640px) {
+
+
+    /* main-email-page */
+    /* .app-email {
+        height: 90%;
+        text-align: center;
+        margin: 20px;
+    } */
+    .main-email-page {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        height: 70%;
+        width: 100%;
     }
+
+    .email-list {
+        background-color: rgb(230, 230, 230);
+        flex: 3;
+        min-height: 100%;
+        width: fit-content;
+    }
+
+
+
+    /* .email-list-ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    } */
+
+
+
+
+    /* .email-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        background-color: rgb(255, 255, 255);
+        min-height: 100%;
+        width: fit-content;
+        flex-wrap: wrap;
+        flex: 1;
+    } */
+
+
 
     /*email-actions*/
-    .btn,
-    button {
+    /* .btn-action {
         text-decoration: none;
         color: #1e1e1e;
         background-color: rgb(255, 255, 255);
         border: 1px solid lightgray;
-        padding: 5px;
-        border-radius: 7px;
+        padding: 10px;
+        border-radius: 15px;
         font-size: 1em;
         cursor: pointer;
-
-    }
-
-
-    .btn:focus {
-        background-color: rgb(247, 255, 187);
-
-    }
+    } */
 
 
 
-    #myProgress {
-        width: 80%;
-        background-color: grey;
-    }
 
-    #myBar {
-        width: 1%;
-        height: 30px;
-        background-color: rgb(235, 138, 11);
-    }
+
 
 }
