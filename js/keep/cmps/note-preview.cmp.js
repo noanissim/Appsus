@@ -13,7 +13,7 @@ export default {
                       <img src="img/notes/trashcan.png" @click.stop="remove(note.id)"/>
                       <div>
                         <!-- <img @click="openColor" src="img/notes/color.png"> -->
-                        <input  @change="openColor(id,color)" type="color"/>
+                        <input  @change="openColor($event,note.id)" type="color"/>
                       </div>
                       <img src="img/notes/mail.png"/>
                       <img src="img/notes/pin.png"/>
@@ -34,8 +34,11 @@ export default {
     remove(noteId) {
       this.$emit('removeNote', noteId)
     },
-    openColor(noteId, color) {
-      // notesService.changeBgcColor(noteId, color)
+    openColor(ev, noteId) {
+      console.log('COLOR', noteId, ev.target.value)
+      notesService.changeBgcColor(noteId, ev.target.value).then(note => {
+        this.$emit('updateColor', noteId)
+      })
     },
     setInput(newNote) {
       console.log(newNote)

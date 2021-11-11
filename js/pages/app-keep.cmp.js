@@ -8,13 +8,10 @@ import newNote from '../keep/cmps/new-note.cmp.js'
 export default {
   template: `
        <section class="app-main main-keeper">
-           <h1>app-keep</h1>
-           <!-- <header></header> -->
            <!-- search with filter -->
             <!-- <note-filter @filtered="setFilter"/> -->
-          <new-note  @noteAdded="getNotes"/>
-            <!-- <book-add @bookAdded="addBook" /> -->
-            <note-preview @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
+            <new-note  @noteAdded="getNotes"/>
+            <note-preview @updateColor="getNotes" @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
     `,
   data() {

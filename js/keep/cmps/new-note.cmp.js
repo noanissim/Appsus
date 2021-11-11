@@ -26,14 +26,20 @@ export default {
     },
     onChangeType(ev, type) {
       this.type = type
-      if (type === 'img') this.placeHolder = 'Pls enter URL...'
-      else if (type === 'video') this.placeHolder = 'Pls enter video URL...'
+      if (type === 'img') this.placeHolder = 'Please enter URL...'
+      else if (type === 'video') this.placeHolder = 'Please enter video URL...'
       else if (type === 'todo') this.placeHolder = 'Make yourself a list!'
       else this.placeHolder = 'Whats on your mind?'
       console.log(this.type)
     },
+
     addNote() {
-      notesService.addNewNote(this.type, this.value).then(res => {
+      let val = this.value
+      if (this.type === 'video') {
+        val = val.replace('watch?v=', 'embed/')
+        console.log('VAL: ', typeof val)
+      }
+      notesService.addNewNote(this.type, val).then(res => {
         this.$emit('noteAdded')
       })
     },

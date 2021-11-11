@@ -24,6 +24,7 @@ function _createNotes() {
         info: {
           txt: 'Fullstack Me Baby!',
         },
+        style: { backgroundColor: 'ffffff' },
       },
       {
         id: 'n102',
@@ -39,6 +40,9 @@ function _createNotes() {
       {
         id: 'n103',
         type: 'note-todos',
+        style: {
+          backgroundColor: '#00d',
+        },
         info: {
           label: 'Get my stuff together',
           todos: [
@@ -53,6 +57,9 @@ function _createNotes() {
         isPinned: true,
         info: {
           txt: 'Do Somemthing!',
+        },
+        style: {
+          backgroundColor: '#00d',
         },
       },
       {
@@ -69,12 +76,25 @@ function _createNotes() {
       {
         id: 'n106',
         type: 'note-todos',
+        style: {
+          backgroundColor: '#00d',
+        },
         info: {
           label: 'Get my stuff together',
           todos: [
             { txt: 'Driving liscence', doneAt: null },
             { txt: 'Coding power', doneAt: 18712432 },
           ],
+        },
+      },
+      {
+        id: 'n109',
+        type: 'note-video',
+        style: {
+          backgroundColor: '#00d',
+        },
+        info: {
+          url: 'https://www.youtube.com/embed/k4bseODOak4',
         },
       },
     ]
@@ -115,17 +135,28 @@ function getTodosNote(label) {
     },
   }
 }
+function getVideoNote(url) {
+  return {
+    type: 'note-video',
+    info: {
+      label: 'Im a Video',
+      url,
+    },
+  }
+}
 
 function addNewNote(type, value) {
   let note = null
   if (type === 'txt') note = getTxtNote(value)
   if (type === 'img') note = getImgNote(value)
   if (type === 'todo') note = getTodosNote(value)
+  if (type === 'video') note = getVideoNote(value)
   return storageService.post(NOTES_KEY, note)
 }
 
 function changeBgcColor(noteId, color) {
   return getById(noteId).then(note => {
+    console.log(note)
     note.style.backgroundColor = color
     storageService.put(NOTES_KEY, note)
   })
