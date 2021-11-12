@@ -1,3 +1,6 @@
+*{
+    font-family: 'roboto', sans-serif;
+}
 
 .note-preview-container{
         background-color: rgb(255, 255, 255);
@@ -34,12 +37,12 @@
     justify-content: space-between
 }
 
-.search-input{
+.search-notes-input{
 font-size: 20px;
-width: 76%;
+width: 40%;
 padding: 10px;
 border-radius: 20px;
-border: none;
+border:  none;
 }
 
 .note-filter{
@@ -48,7 +51,7 @@ border: none;
     background-color: white;
     border-radius: 20px;
     margin: 0 auto;
-    width: 80%;
+    width: 50%;
     padding:5px;
     box-shadow: 0px 0px 5px 5px #8080801c;
 
@@ -62,10 +65,10 @@ border: none;
     max-width: 30px;
 }
 
-/* .note-img {
-    max-width: 150px;
-    object-fit: fill;
-} */
+.note-img {
+    max-width: 200px;
+    /* object-fit: fill; */
+}
 
 .add-buttons-container{
     /* background-color: white; */
@@ -106,15 +109,20 @@ border: none;
 
 .preview-btns img{
 padding: 1px;
-width: 20px;
 display: flex;
 align-items: center;
 justify-content: center;
+max-width: 40px;
 }
 
 .preview-btns input{
     /* opacity: 0; */
     border: none;
+}
+
+.todos-preview input{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
 }
 
 .todos-preview{
@@ -127,11 +135,34 @@ justify-content: center;
     color: black;
 }
 
-.todos-preview button{
+.todos-preview .add-todo-btn{
     position: absolute;
-    font-size: 10px;
+    border-radius: 20px;
+    font-size: 25px;
+    color: rgba(0, 0, 0, 0.418);
     top: 0;
     right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px rgba(0, 0, 0, 0) solid
+}
+.todos-preview button:hover{
+    cursor: pointer;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.808);
+}
+.remove-todo{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    cursor: pointer;
+}
+
+
+.remove-todo:hover{
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.808);
 }
 
 .text-cmp{
@@ -169,14 +200,80 @@ width: 100%;
 .note-dynamic{
     height: 100%;
 }
+input:focus, textarea:focus, select:focus{
+    outline: none;
+}
 
 .todo-checkbox{
     display: flex;
+    position: relative;
     gap: 10px;
     align-items: center;
-    width: 100%;
+    width: 80%;
 }
+
+.todo-checkbox input{
+    font-size: 20px;
+    border: none;
+    border-bottom: 1px black solid;
+}
+
 
 .checked{
 text-decoration: line-through;
 }
+
+
+
+.note-search-filter{
+    display: flex;
+    padding: 10px;
+}
+.note-search-filter input{
+    border: none;
+    border-bottom: 1px rgba(172, 172, 172, 0.301) solid;
+    transition-duration: 0.3s;
+    background: url('/img/notes/search.png') no-repeat scroll 7px 7px;
+    padding-left: 40px;
+}
+.note-search-filter input:focus{
+    
+    border-bottom: 1px rgba(118, 173, 255, 0.781) solid;
+}
+.note-search-filter input:focus::placeholder{
+    color: rgba(118, 173, 255, 0.781);
+}
+.note-search-filter input::placeholder{
+    transition-duration: 0.3s;
+}
+
+.searchBar-container{
+    display: flex;
+    width: 100%;
+}
+
+.color-picker{
+    border: none;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 50%;
+}
+
+.color-picker {
+    -webkit-appearance: none;
+    padding: 0;
+    border: 1px black solid;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+  }
+  .color-picker::-webkit-color-swatch {
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 0;
+  }
+  .color-picker::-webkit-color-swatch-wrapper {
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 0;
+  }

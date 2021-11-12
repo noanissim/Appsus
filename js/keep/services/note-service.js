@@ -7,6 +7,7 @@ export const notesService = {
   updateNote,
   getById,
   changeBgcColor,
+  onPinNote,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -24,24 +25,24 @@ function _createNotes() {
         info: {
           txt: 'Fullstack Me Baby!',
         },
-        style: { backgroundColor: 'ffffff' },
+        style: { backgroundColor: '#ffffff' },
       },
       {
         id: 'n102',
         type: 'note-img',
         info: {
-          url: 'img/notes/user2.png',
+          url: './img/notes/user2.png',
           title: 'Bobi and Me',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#a29bfe',
         },
       },
       {
         id: 'n103',
         type: 'note-todos',
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#81ecec',
         },
         info: {
           label: 'Get my stuff together',
@@ -59,31 +60,35 @@ function _createNotes() {
           txt: 'Do Somemthing!',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#f1c40f',
         },
       },
       {
         id: 'n105',
         type: 'note-img',
         info: {
-          url: 'img/notes/user2.png',
+          url: './img/notes/dogs.jpg',
           title: 'Bobi and Me',
         },
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#2ecc71',
         },
       },
       {
         id: 'n106',
         type: 'note-todos',
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#9b59b6',
         },
         info: {
-          label: 'Get my stuff together',
+          label: 'Super-market list',
           todos: [
-            { txt: 'Driving liscence', doneAt: null },
-            { txt: 'Coding power', doneAt: 18712432 },
+            { txt: 'Milk', doneAt: null },
+            { txt: 'Coffe', doneAt: 18712432 },
+            { txt: 'Bananas', doneAt: 18712432 },
+            { txt: 'Beers', doneAt: 18712432 },
+            { txt: 'Bread', doneAt: 18712432 },
+            { txt: 'TimTam', doneAt: 18712432 },
           ],
         },
       },
@@ -91,10 +96,11 @@ function _createNotes() {
         id: 'n109',
         type: 'note-video',
         style: {
-          backgroundColor: '#00d',
+          backgroundColor: '#0000',
         },
         info: {
-          url: 'https://www.youtube.com/embed/k4bseODOak4',
+          label: 'Nice Video',
+          url: 'https://www.youtube.com/embed/ejNF1Vtupgs',
         },
       },
     ]
@@ -173,6 +179,12 @@ function updateNote(id) {
   return storageService.put(NOTES_KEY, id)
 }
 
+function onPinNote(note) {
+  return remove(note.id).then(res => {
+    console.log('REMOVE FROM SERVICE', res)
+    return storageService.postUnshift(NOTES_KEY, note)
+  })
+}
 function getById(noteId) {
   return storageService.get(NOTES_KEY, noteId)
 }
@@ -188,5 +200,5 @@ function loadFromStorage(key) {
 
 function save(note) {
   if (note.id) return storageService.put(NOTES_KEY, note)
-  else return storageService.post(NOTES_KEY, note)
+  else return storageService.postUnshift(NOTES_KEY, note)
 }

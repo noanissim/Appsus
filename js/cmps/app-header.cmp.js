@@ -9,7 +9,7 @@ export default {
           <div v-if="menuOpen"  @click="toggleScreen" class="main-screen">
           </div>
 
-             <button class="btn-menu" @click="toggleScreen">☰</button>
+             <a class="btn-menu" @click="toggleScreen"><img src="img/notes/view-more.png"/></a>
 
              <ul v-bind:class="{ 'menu-open': menuOpen }" class="main-nav flex clean-list">
                 <li><router-link @click.native="scrollToTop"  to="/">Home</router-link></li>
