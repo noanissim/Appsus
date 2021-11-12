@@ -1,7 +1,7 @@
 const noteTxt = {
   props: ['note'],
   template: `
-        <div style="height:200px; " v-if="localNote" class="text-cmp">
+        <div style="height:100px; " v-if="localNote" class="text-cmp">
           
           <textarea class="text-area" rows="5"  v-model="localNote.info.txt"><span>{{localNote.info.txt}}</span></textarea>
         </div>
@@ -71,19 +71,19 @@ const noteTodos = {
   template: `
         <div class="todos-preview">
           <h4><span>{{note.info.label}}</span></h4><br>
-          <button @click="toggleNewTodo">+</button>
+          <button class="add-todo-btn" @click="toggleNewTodo">+</button>
 
           <ul >  
-            <!-- <p>{{todoCmp.info.todos[0].txt}}</p> -->
               <li v-for="(todo,idx) in todoCmp.info.todos">
                 <div class="todo-checkbox">
                   <input @change="setIsDone($event,idx)" :checked ="todo.isChecked" type="checkbox"/>
-                  <input v-if="idx===currEditTodo" @blur="reportVal(idx)"  v-model="todo.txt" placeholder="What you wanna do?" type="text"/>
+                  <input v-if="idx===currEditTodo" @keyup.enter="resetIdx" @blur="reportVal(idx)"  v-model="todo.txt" placeholder="What you wanna do?" type="text"/>
                   <p @click="setTodoEdit(idx)"  v-bind:class="{ checked: todo.isChecked }" v-else>{{todo.txt}}</p>
+                    <button @click="removeTodo(idx)" class="remove-todo">X</button>
                 </div>
               </li>
               <li v-if="isNewTodo">
-                <input @blur="addNewTodo" v-model="todoVal.txt" type="text"/>
+                <input placeholder="Whats new?" @keyup.enter="addNewTodo" v-model="todoVal.txt" type="text"/>
               </li>
             </ul>
             </label>
@@ -108,9 +108,18 @@ const noteTodos = {
       this.currEditTodo = idx
       console.log(idx)
     },
+    resetIdx() {
+      this.currEditTodo = null
+    },
+    removeTodo(idx) {
+      console.log(idx)
+      this.todoCmp.info.todos.splice(idx, 1)
+      this.$emit('setInput', this.todoCmp)
+    },
     addNewTodo() {
       this.todoCmp.info.todos.push({ ...this.todoVal })
       this.$emit('setInput', this.todoCmp)
+      this.todoVal.txt = ''
     },
     setIsDone(ev, idx) {
       this.todoCmp.info.todos[idx].isChecked = ev.target.checked

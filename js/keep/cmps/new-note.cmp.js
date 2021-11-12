@@ -2,7 +2,7 @@ import { notesService } from '../services/note-service.js'
 export default {
   template: `
             <div class="note-filter">
-                <input class="search-input" v-model="value" @keyup.enter="addNote" @input="newNote" type="text" :placeholder="placeHolder">
+                <input class="search-notes-input" v-model="value" @keyup.enter="addNote" @input="newNote" type="text" :placeholder="placeHolder">
                 <div class="add-buttons-container">
                     <button @click="onChangeType($event,'txt')" ><img src="../img/notes/txt.png"/></button>
                     <button @click="onChangeType($event,'img')"><img src="../img/notes/gallery.png"/></button>

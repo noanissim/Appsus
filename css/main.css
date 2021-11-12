@@ -72,7 +72,19 @@ body {
     background-color: rgb(255, 255, 255);
 }
 
-.hamburger {}
+
+.btn-menu {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    height: 4vh;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-menu:hover {
+    height: 4.5vh;
+}
 
 .main-nav {
     position: fixed;

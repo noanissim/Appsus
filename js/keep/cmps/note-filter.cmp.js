@@ -1,20 +1,13 @@
 export default {
   template: `
-          <div class="note-filter">
-              <input class="search-input" @input="filter" v-model="filterBy.title" type="text" placeholder="Whats on your mind?">
-              <div>
-                  <button><img src="../img/notes/txt.png"/></button>
-                  <button><img src="../img/notes/gallery.png"/></button>
-                  <button><img src="../img/notes/video.png"/></button>
-              </div>
+          <div class="note-search-filter">
+               <input class="note-search-filter" @input="filter" v-model="filterBy.title" type="text" placeholder="Search Notes">
           </div>
       `,
   data() {
     return {
       filterBy: {
-        txt: '',
-        img: '',
-        video: '',
+        title: '',
       },
     }
   },
