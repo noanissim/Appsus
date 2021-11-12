@@ -96,8 +96,8 @@ export default {
         changeColor() {
             // this.review.rate = num;
 
-            this.email.isStarred = true
-            console.log('hello', this.email)
+            // this.email.isStarred = true
+            // console.log('hello', this.email)
         }
     },
     computed: {

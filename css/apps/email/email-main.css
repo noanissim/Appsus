@@ -4,6 +4,7 @@
     height: 90%;
     text-align: center;
     margin: 20px;
+    font-size: 12px;
 }
 
 .email-list-ul {
@@ -128,20 +129,37 @@
 .email-preview {
     background-color: rgb(255, 255, 255);
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid gainsboro;
+    text-align: left;
+}
 
-
+.email-preview-container:hover {
+    box-shadow: rgba(0, 0, 0, 0.555) 0px 5px 5px;
+    border: 1px solid rgb(172, 172, 172);
 }
 
 .email-preview .email-is-read {
-    background-color: rgb(212, 211, 211);
+    background-color: rgb(241, 241, 241);
 }
 
 .actions-email-preview .email-is-read {
-    background-color: rgb(212, 211, 211);
+    background-color: rgb(241, 241, 241);
 }
 
-.email-preview-data p {
+.email-preview-data {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 4.5em;
+}
+
+.email-preview-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.email-preview-data>* {
     display: inline-block;
     margin: 5px;
 }
@@ -152,11 +170,11 @@
 }
 
 .star-img {
-    font-size: 40px;
+    font-size: 2em;
 }
 
 .email-img {
-    width: 40px;
+    width: 2em;
 }
 
 span.checked-star {
@@ -206,7 +224,7 @@ span.unChecked-star {
     }
 
     .email-list {
-        background-color: rgb(230, 230, 230);
+        background-color: rgb(255, 255, 255);
         min-height: 100%;
         display: flex;
         width: 100%;
@@ -218,7 +236,7 @@ span.unChecked-star {
         flex-direction: row;
         align-items: center;
         gap: 10px;
-        background-color: rgba(230, 230, 230, 0.726);
+        background-color: rgb(255, 255, 255);
         min-height: 100%;
         /* flex: 1; */
         /* border: 1px solid black */
@@ -251,7 +269,7 @@ span.unChecked-star {
     }
 
     .email-list {
-        background-color: rgb(230, 230, 230);
+        background-color: rgb(255, 255, 255);
         flex: 3;
         min-height: 100%;
         width: fit-content;
