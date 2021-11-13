@@ -1,9 +1,8 @@
-import {
-    emailService
-} from '../services/email-service.js';
+import { emailService } from '../services/email-service.js'
+import { eventBus } from '../../services/event-bus-service.js'
 
 export default {
-    template: `
+  template: `
         <section class="email-edit app-main">
             <div class="email-edit-container">
                 <div class="compose-message-header">
@@ -26,32 +25,28 @@ export default {
             
         </section>
     `,
-    data() {
-        return {
-            emailToEdit: null
-        };
-    },
-    created() {
-        const {
-            emailId
-        } = this.$route.params;
-        if (emailId) {
-            emailService.getById(emailId)
-                .then(email => this.emailToEdit = email);
-            //to the drafts
-        } else {
-            this.emailToEdit = emailService.getEmptyEmail();
-        }
-    },
-    methods: {
-        save() {
-            emailService.saveSentEmails(this.emailToEdit)
-                .then(email => this.$router.push('/email'));
-        },
-        scrollToTop() {
-            window.scrollTo(0, 0);
-
-
-        },
+  data() {
+    return {
+      emailToEdit: null,
     }
-};
+  },
+  created() {
+    const { emailId } = this.$route.params
+    if (emailId) {
+      emailService.getById(emailId).then(email => (this.emailToEdit = email))
+      //to the drafts
+    } else {
+      this.emailToEdit = emailService.getEmptyEmail()
+    }
+  },
+  methods: {
+    save() {
+      emailService
+        .saveSentEmails(this.emailToEdit)
+        .then(email => this.$router.push('/email'))
+    },
+    scrollToTop() {
+      window.scrollTo(0, 0)
+    },
+  },
+}

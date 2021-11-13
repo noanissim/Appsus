@@ -1,10 +1,6 @@
 import {
-  eventBus
-} from '../services/event-bus-service.js'
-import {
   notesService
 } from '../keep/services/note-service.js'
-import noteList from '../keep/cmps/note-list.cmp.js'
 import notePreview from '../keep/cmps/note-preview.cmp.js'
 import noteFilter from '../keep/cmps/note-filter.cmp.js'
 import newNote from '../keep/cmps/new-note.cmp.js'
@@ -12,10 +8,9 @@ import newNote from '../keep/cmps/new-note.cmp.js'
 export default {
   template: `
        <section class="app-main main-keeper">
-           <!-- search with filter -->
            <div class="searchBar-container">
              <note-filter @filtered="setFilter"/>
-             <new-note :emailNote="emailNote" @noteAdded="getNotes"/>
+             <new-note :emailNote="emailNote" @noteAdded="noteAdded"/>
            </div>
             <note-preview class='' @duplicate="duplicate" @pinNote="pinNote"  @updateColor="getNotes" @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
@@ -68,7 +63,12 @@ export default {
   methods: {
     getNotes() {
       notesService.query().then(notes => {
-        this.notes = notes
+        this.notes = JSON.parse(JSON.stringify(notes))
+      })
+    },
+    noteAdded(type, val) {
+      notesService.addNewNote(type, val).then(res => {
+        this.getNotes()
       })
     },
     pinNote(note) {
@@ -130,7 +130,6 @@ export default {
     },
   },
   components: {
-    noteList,
     notePreview,
     noteFilter,
     newNote,

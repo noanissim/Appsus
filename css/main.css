@@ -46,17 +46,18 @@ body {
     border-bottom: rgba(0, 0, 0, 0.192) solid 1px;
     padding-inline: 10px;
 }
-
 .app-footer {
-    height: fit-content;
-    background-color: rgb(160, 160, 160);
+    height: 80px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
     display: flex;
+    font-size: 2em;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    font-size: 1.3em;
-
+    border-top: rgba(0, 0, 0, 0.192) solid 1px;
+    padding-inline: 10px;
 }
+
 
 .app-main {
     min-height: 90vh;
@@ -105,6 +106,10 @@ body {
     transform: translateX(100%);
     transition: transform .6s;
     z-index: 1;
+}
+.main-nav a:hover{
+color: rgb(103, 103, 255);
+border-bottom: 1px rgb(127, 127, 219) solid;
 }
 
 .menu-open {

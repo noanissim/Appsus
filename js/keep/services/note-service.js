@@ -27,7 +27,7 @@ function _createNotes() {
         type: 'note-txt',
         isPinned: true,
         info: {
-          txt: 'Fullstack Me Baby!',
+          txt: 'Water Your Plants Boy!',
         },
         style: {
           backgroundColor: '#ffffff'
@@ -51,7 +51,7 @@ function _createNotes() {
           backgroundColor: '#9b59b6',
         },
         info: {
-          label: 'Class = 0 Maamatz',
+          label: `Class = "0 Maamatz"`,
           url: 'https://www.youtube.com/embed/ejNF1Vtupgs',
         },
       },
@@ -238,7 +238,6 @@ function _createNotes() {
     ]
     saveToStorage(NOTES_KEY, notes)
   }
-  // console.log(notes)
   return notes
 }
 
@@ -318,7 +317,7 @@ function addNewNote(type, value) {
   if (type === 'img') note = getImgNote(value)
   if (type === 'todo') note = getTodosNote(value)
   if (type === 'video') note = getVideoNote(value)
-  return storageService.post(NOTES_KEY, note)
+  return storageService.postUnshift(NOTES_KEY, note)
 }
 
 function changeBgcColor(noteId, color) {

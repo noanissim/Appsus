@@ -12,7 +12,7 @@ const noteTxt = {
     }
   },
   created() {
-    this.localNote = this.note
+    this.localNote = { ...this.note }
   },
   methods: {
     reportVal(newNote) {

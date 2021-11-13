@@ -13,9 +13,9 @@ export default {
 
              <ul v-bind:class="{ 'menu-open': menuOpen }" class="main-nav flex clean-list">
                 <li><router-link @click.native="scrollToTop"  to="/">Home</router-link></li>
-                <li> <router-link @click.native="scrollToTop"  to="/email">emails</router-link></li>
-                <li><router-link @click.native="scrollToTop"  to="/keep">keep</router-link></li>
-                <li><router-link @click.native="scrollToTop"  to="/book">books</router-link></li>
+                <li> <router-link @click.native="scrollToTop"  to="/email">Emails</router-link></li>
+                <li><router-link @click.native="scrollToTop"  to="/keep">Keep</router-link></li>
+                <li><router-link @click.native="scrollToTop"  to="/book">Books</router-link></li>
             </ul>
 
         </header>
