@@ -19,9 +19,13 @@ export default {
     },
     template: `
        <section class="app-main app-email">
-           <email-filter @filtered="setFilter"/>
+           <div class="top-mobile-container">
+           <button @click="toggleActions" class="email-menu-btn"><img src="./img/menu.png" class="email-menu"></button>
+           <email-filter  @filtered="setFilter"/>
+           </div>
+          
            <section class="main-email-page">
-                <email-actions  v-if="emails" :emails="emailsToShow" @stateClicked="stateClicked"/>
+                <email-actions  :class="{ emailMenuOpen:isMobileAction}"  v-if="emails" :emails="emailsToShow" @stateClicked="stateClicked"/>
                 <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail" @removeEmail="removeEmail" @changeStar="changeStar"/>
            </section>
            <!-- actions  any item is a new route -(stars-filter) -->
@@ -38,7 +42,8 @@ export default {
             isInbox: null,
             isSent: null,
             isStar: null,
-            isDraft: null
+            isDraft: null,
+            isMobileAction: false
         }
     },
     created() {
@@ -49,7 +54,10 @@ export default {
 
 
     methods: {
-
+        toggleActions() {
+            console.log('toggle actions');
+            this.isMobileAction = !this.isMobileAction
+        },
         loadEmails() {
             emailService.query()
                 .then(emails => {
@@ -72,13 +80,12 @@ export default {
             this.loadEmails()
         },
         removeEmail(id) {
-            console.log(id, 'hereeeee');
             emailService.remove(id)
                 .then(() => {
                     const msg = {
                         txt: 'Deleted succesfully',
                         type: 'success',
-                        link: '/email'
+                        link: ''
                     };
                     eventBus.$emit('showMsg', msg);
                     this.loadEmails();
@@ -102,6 +109,7 @@ export default {
             this.filterBy = filterBy;
         },
         stateClicked(state) {
+            this.isMobileAction = !this.isMobileAction
             console.log(state);
             if (state === 'isAll') this.stateBy = null
             else {
@@ -116,7 +124,7 @@ export default {
     computed: {
         emailsToShow() {
             // returns emails based on the current filter
-
+            console.log(this.filterBy);
             if (!this.filterBy ||
                 (!this.filterBy.subject &&
                     this.filterBy.selectOption === 'all' &&
@@ -147,7 +155,15 @@ export default {
                 // console.log(ans2);
                 return ans1 && ans2 && ans3
             });
+            if (this.filterBy.selectOption === 'sortNew' || this.filterBy.selectOption === 'sortOld') {
+                console.log('works');
+                emailsToShow = []
+                emailsToShow = this.emails.sort((email1, email2) => {
+                    if (this.filterBy.selectOption === 'sortNew') return email2.sentAt - email1.sentAt
+                    if (this.filterBy.selectOption === 'sortOld') return email1.sentAt - email2.sentAt
+                })
 
+            }
             console.log('emailsToShow', emailsToShow);
             return emailsToShow;
         },
@@ -160,6 +176,14 @@ export default {
             console.log('bla');
             console.log(ev);
             console.log(par);
+        },
+        sortEmailsForDisplay() {
+            let res = this.emails
+            res.sort((email1, email2) => {
+                return email1.sentAt - email2.sentAt
+            })
+            console.log(res);
+            // return res
         }
 
     },

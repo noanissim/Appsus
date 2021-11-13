@@ -22,7 +22,7 @@ body {
 }
 
 .logo {
-    padding: 10px;
+    /* padding: 10px; */
 
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .app-header {
-    height: 9vh;
+    height: 80px;
     width: 100%;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -135,12 +135,41 @@ body {
     background-color: rgba(0, 0, 0, 0.534);
 }
 
-.menu-img {
+.menu-img,
+.email-menu {
     width: 2em;
     height: 2em;
 }
 
-.btn-menu {
-    background-color: white;
+.btn-menu,
+.email-menu-btn,
+.clean-btn {
+    background-color: rgba(255, 255, 255, 0);
     border: none;
+    cursor: pointer;
+}
+
+.user-msg {
+    color: black;
+    font-size: 2em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    padding: 20px;
+    margin: auto;
+    text-align: center;
+}
+
+.success {
+    background-color: rgb(255, 255, 255);
+    border: 5px solid rgb(27, 180, 27);
+    border-radius: 15px;
+}
+
+.error {
+    background-color: rgb(255, 255, 255);
+    border: 5px solid rgb(241, 42, 42);
+    border-radius: 15px;
 }

@@ -13,31 +13,51 @@ export default {
     },
     template: `
     <section class="email-actions">
-        <div class="email-actions-container">
+        <div class=" email-actions-container">
 
                 <router-link class="btn btn-action btn-compose" to="/email/add">
                 <img src="../../../img/email/plus.png" class="action-img">    
                 Compose</router-link>
 
                 <button class="btn btn-action" :class="{clicked:state.isAll}"  @click="setFilterAll">
-                <img src="../../../img/email/mail (2).png" class="action-img">    
-                All</button>
+                <div class="btn-info">
+                    <img src="../../../img/email/mail (2).png" class="action-img">    
+                    All
+                    {{countAll}}
+                </div>
+                </button>
 
                 <button class="btn btn-action" :class="{clicked:state.isInbox}" @click="setFilterInbox">
-                <img src="../../../img/email/inbox.png" class="action-img">    
-                Inbox</button>
+                <div class="btn-info">
+                    <img src="../../../img/email/inbox.png" class="action-img">    
+                    Inbox
+                    {{countInbox}}
+                </div>
+                </button>
 
                 <button class="btn btn-action" :class="{clicked:state.isStar}" @click="setFilterStarred">
-                <img src="../../../img/email/star.png" class="action-img">    
-                Starred</button>
+                <div class="btn-info">
+                    <img src="../../../img/email/star.png" class="action-img">    
+                    Starred
+                    {{countStarred}}
+                </div>
+                </button>
 
                 <button class="btn btn-action" :class="{clicked:state.isSent}" @click="setFilterSent">
-                <img src="../../../img/email/mail (1).png" class="action-img">    
-                Sent</button>
+                <div class="btn-info">
+                    <img src="../../../img/email/mail (1).png" class="action-img">    
+                    Sent
+                    {{countSent}}
+                </div>
+                </button>
 
                 <button class="btn btn-action" :class="{clicked:state.isDraft}" @click="setFilterDrafts">
-                <img src="../../../img/email/draft.png" class="action-img">    
-                Drafts</button>
+                <div class="btn-info">
+                    <img src="../../../img/email/draft.png" class="action-img">    
+                    Drafts
+                    {{countDrafts}}
+                </div>
+                </button>
 
                 <div class="progress-p">{{unreadCountFunc}}% unread emails</div>
                 <div id="myProgress">
@@ -143,6 +163,37 @@ export default {
         calcStyle() {
             return `width:${this.count}%;`
         },
+        countAll() {
+            return this.emails.length
+        },
+        countInbox() {
+            let count = 0
+            this.emails.forEach(email => {
+                if (email.to.fullname === 'Appsus Admin') count++
+            })
+            return count
+        },
+        countStarred() {
+            let count = 0
+            this.emails.forEach(email => {
+                if (email.isStarred) count++
+            })
+            return count
+        },
+        countSent() {
+            let count = 0
+            this.emails.forEach(email => {
+                if (email.sentAt > 0) count++
+            })
+            return count
+        },
+        countDrafts() {
+            let count = 0
+            this.emails.forEach(email => {
+                if (email.sentAt === 0) count++
+            })
+            return count
+        }
 
 
     }

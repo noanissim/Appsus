@@ -5,13 +5,25 @@ import {
 export default {
     template: `
         <section class="email-edit app-main">
-            <h3>Add a new email</h3>
+            <div class="email-edit-container">
+                <div class="compose-message-header">
+                    <h3>New Message</h3>
+                    <router-link title="Cancel(saved as draft)"  class="btn btn-cancel-email" @click.native="scrollToTop" to="/email">
+                        <img class="action-img" src="./img/email/cancel (1).png">
+                    </router-link>
+                </div>
+           
             <form v-if="emailToEdit" @submit.prevent="save" >
-                <input v-model="emailToEdit.to.fullname" type="text" placeholder="to">
-                <input v-model="emailToEdit.subject" type="text" placeholder="subject">
-                <input v-model="emailToEdit.body" type="text" placeholder="body">
-                <button>Save</button>
+                <input v-model="emailToEdit.to.fullname" type="text" placeholder="To">
+                <input v-model="emailToEdit.subject" type="text" placeholder="Subject">
+                <textarea class="body-input" v-model="emailToEdit.body" type="text" placeholder="Your Message"></textarea>
+                <button class="btn-send">Send</button>
+                <router-link title="Delete"  class="btn btn-close-email" @click.native="scrollToTop" to="/email">
+                        <img class="action-img" src="./img/email/delete.png">
+                </router-link>
             </form>
+            </div>
+            
         </section>
     `,
     data() {
@@ -35,6 +47,11 @@ export default {
         save() {
             emailService.saveSentEmails(this.emailToEdit)
                 .then(email => this.$router.push('/email'));
-        }
+        },
+        scrollToTop() {
+            window.scrollTo(0, 0);
+
+
+        },
     }
 };

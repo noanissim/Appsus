@@ -14,22 +14,34 @@ export default {
     template: `
         <section v-if="email" class="email-details app-main">
            <div class="email-details-box">
-            
-            <p>Subject: {{email.subject}}</p>
-            <p>From: {{email.from.fullname}}, {{email.from.email}}</p>
+           <h3>{{email.subject}}</h3>
+            <div class="user-details">
+            <div class="contact-user" :style="{'background-color':getColor}">{{showFirstLetter}}</div>
+            <p > 
+                <strong>{{email.from.fullname}}</strong> 
+                <{{email.from.email}}>
+            </p>
+            </div>
             <p>To: {{email.to.fullname}}, {{email.to.email}}</p>
-            <p>Body: {{email.body}}</p>
-            <p :isRead="isEmailRead">Is read: {{email.isRead}}</p>
+            <p>{{email.body}}</p>
+            <!-- <p :isRead="isEmailRead">Is read: {{email.isRead}}</p> -->
             <p>Sent at: {{convertToTime}}</p>
-            <p>Id: {{email.id}}</p>
-            <p>Star?{{isStar}} </p>
+            <!-- <p>Id: {{email.id}}</p> -->
+            <!-- <p>Star?{{email.isStarred}} </p> -->
             <!-- <p>Star?{{isStar}} {{checkIfIsStarred}}</p> -->
             <span class="fa fa-star star-img" :class="{'checked-star':email.isStarred, 'unChecked-star':!email.isStarred}" @click="changeColor"></span>
+
             <div class="actions-email-preview">
-                    <button @click="removeEmail(email.id)" >Delete</button>
-                    <button>Save as note</button>
-                    <!-- <button @click="select(email)" >Details</button> -->
-                    <router-link class="btn btn-close-email" @click.native="scrollToTop" to="/email" >Go back</router-link>
+                    <button title="Delete" class="clean-btn btn-delete-email" @click="removeEmail(email.id)" >
+                        <img class="action-img" src="./img/email/delete.png">
+                    </button>
+                    <button class="clean-btn" title="Note">
+                        <img class="action-img" src="./img/email/edit.png">
+                    </button>
+                    <router-link title="Go back"  class="btn btn-close-email" @click.native="scrollToTop" to="/email">
+                        <img class="action-img" src="./img/email/return.png">
+                    </router-link>
+
             </div>
             </div>
            <!-- <router-link to="/email">Go back</router-link> -->
@@ -89,6 +101,7 @@ export default {
                 .then(res => {
                     this.$router.push('/email')
                 })
+
         },
         scrollToTop() {
             window.scrollTo(0, 0);
@@ -116,6 +129,14 @@ export default {
                     console.log(res);
                     return res.isStarred
                 })
+        },
+        showFirstLetter() {
+            let name = this.email.from.fullname
+            return name.substring(0, 1)
+        },
+        getColor() {
+            let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            return '#' + randomColor
         }
     }
 }

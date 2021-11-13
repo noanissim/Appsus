@@ -3,13 +3,12 @@ export default {
         <header  class="app-header">
           <div >
             <router-link @click.native="scrollToTop"  to="/">
-            <img class="logo" src="./img/logo.png" >
+            <img class="logo" src="./img/logo2.png" >
             </router-link>
             
           </div>
 
-          <div v-if="menuOpen"  @click="toggleScreen" class="main-screen">
-          </div>
+          <div v-if="menuOpen"  @click="toggleScreen" class="main-screen"></div>
 
              <a class="btn-menu" @click="toggleScreen"><img src="img/notes/view-more.png"/></a>
 

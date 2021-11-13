@@ -1,36 +1,50 @@
 import longText from "../../cmps/long-text-cmp.js"
+import emailExpand from "../cmps/email-expand.cmp.js"
+import emailLongText from "../cmps/email-long-text.cmp.js"
+
 
 
 export default {
     props: ['email'],
     components: {
-        longText
+        longText,
+        emailExpand,
+        emailLongText
     },
     template: `
         <div class="email-preview" @click="emailClicked">
             <div :class="isEmailReadImg" class="email-preview-data">
-            <span class="fa fa-star star-img" :class="{'checked-star':isStar, 'unChecked-star':!isStar}" @click.stop="changeColor(email.id)"></span>
-
-            <p>{{email.from.fullname}}</p>            
-            <p>{{email.subject}}</p>
-            <long-text :txt="email.body"></long-text>
+            <div class="star-area area-in-preview">
+                <span class="fa fa-star star-img" :class="{'checked-star':isStar, 'unChecked-star':!isStar}" @click.stop="changeColor(email.id)"></span>
+            </div>
+            <div class="from-area area-in-preview">
+                <p>{{email.from.fullname}}</p>            
+            </div>
+            <div class="subject-area area-in-preview">
+                <p>{{email.subject}}</p>
+            </div>
+            <div class="body-area area-in-preview">
+                <email-long-text :txt="email.body"></email-long-text>
+            </div>
             <!-- <p>Is read: {{email.isRead}}</p>            -->
             <!-- <p>Is starred: {{email.isStarred}}</p>   -->
-            <p>{{convertToTimeShort}}</p>
-            <img class="email-img" v-if="!email.isRead"  src="../../../img/email/mail.png">
-            <img  class="email-img"  v-else src="../../../img/email/open-envelope.png">
-            <div :class="isEmailReadImg" class="actions-email-preview">
-                    <button @click="removeEmail(email.id)" >Delete</button>
+            <div class="time-area area-in-preview">
+                <p>{{convertToTimeShort}}</p>
+            </div>
+            <!-- <img class="email-img" v-if="!email.isRead"  src="../../../img/email/mail.png"> -->
+            <!-- <img  class="email-img"  v-else src="../../../img/email/open-envelope.png"> -->
+            <!-- <div :class="isEmailReadImg" class="actions-email-preview"> -->
+                    <!-- <button @click="removeEmail(email.id)" >Delete</button> -->
                     <!-- <button @click="select(email)" >Details</button> -->
-                    <router-link :isStar="isStar"  class="btn btn-open-email" @click.native="scrollToTop" :to="'/email/'+email.id">Open</router-link>
+            <!-- </div> -->
             </div>
-            </div>
-           
+           <email-expand :email="email" v-if="isExpand" @removeEmail="removeEmail"></email-expand>
         </div>
     `,
     data() {
         return {
-            isStar: this.email.isStarred
+            isStar: this.email.isStarred,
+            isExpand: false,
         }
     },
 
@@ -48,8 +62,8 @@ export default {
         },
         emailClicked(ev) {
             ev.stopPropagation();
-            // console.log(ev);
-            // this.email.isRead = true
+            this.isExpand = !this.isExpand
+            console.log(this.isExpand);
             console.log(this.email);
         },
         changeColor(emailId) {
