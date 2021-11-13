@@ -23,13 +23,15 @@ body {
 
 .logo {
     padding: 10px;
-
+}
+.logo img{
+    padding: 10px;
+    max-width: 200px;
 }
 
 .logo a {
     color: #616161;
     text-decoration: none;
-
 }
 
 .app-header {
@@ -143,4 +145,106 @@ body {
 .btn-menu {
     background-color: white;
     border: none;
+}
+/* HOME  */
+
+.main-home-container{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.home-details-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 30%;
+    padding: 50px;
+    margin-top: 100px;
+}
+.main-home-container img{
+    max-width: 60%;
+    margin-left: 30px;
+}
+
+.home-details-container h1{
+    font-size: 3em;
+    font-weight: 100;
+    margin: 10px;
+}
+.home-details-container p{
+    margin-bottom: 30px;
+        font-size: 1.2em;
+        font-weight: 100;
+}
+
+.action-btn-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-right: 20px;
+}
+.action-btn-home a{
+    margin-right: 20px;
+    border: 1px solid lightgrey;
+    width: 126px;
+    color: grey;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 1.4em;
+    outline: none;
+    background-color: transparent;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration:none
+}
+.action-btn-home a:hover{
+    color: rgba(41, 40, 40, 0.774);
+    border: 1px solid rgb(70, 70, 70);
+}
+
+
+@media (max-width: 1250px){
+    .main-home-container{
+        align-items: center;
+        flex-direction: column;
+    }
+    .home-details-container{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 65%;
+        padding: 0 50px 50px 50px;
+        margin-top: 0;
+    }
+    .main-home-container img{
+        max-width: 100%;
+        margin-left: 30px;
+    }
+    
+}
+@media (max-width: 650px){
+    .home-details-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        max-width: 100%;
+        padding: 0 20px 20px;
+    }
+    .action-btn-home{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+    .action-btn-home a {
+        width: 90px;
+        height: 50px;
+    }
+    
 }

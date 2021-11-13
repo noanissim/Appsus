@@ -8,6 +8,7 @@ export const notesService = {
   getById,
   changeBgcColor,
   onPinNote,
+  onDuplicate,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -32,10 +33,21 @@ function _createNotes() {
         type: 'note-img',
         info: {
           url: './img/notes/user2.png',
-          title: 'Bobi and Me',
+          title: 'My Elegant Panda',
         },
         style: {
           backgroundColor: '#a29bfe',
+        },
+      },
+      {
+        id: 'n107',
+        type: 'note-video',
+        style: {
+          backgroundColor: '#9b59b6',
+        },
+        info: {
+          label: 'Class = 0 Maamatz',
+          url: 'https://www.youtube.com/embed/ejNF1Vtupgs',
         },
       },
       {
@@ -45,10 +57,13 @@ function _createNotes() {
           backgroundColor: '#81ecec',
         },
         info: {
-          label: 'Get my stuff together',
+          label: 'Finish Sprint Features',
           todos: [
-            { txt: 'Driving liscence', doneAt: null },
-            { txt: 'Coding power', doneAt: 187111111 },
+            { txt: 'Filtering by type', doneAt: null },
+            { txt: 'Add Color feature', doneAt: 187111111 },
+            { txt: 'Design Break !!', doneAt: 187111111 },
+            { txt: 'You forgot to eat', doneAt: 187111111 },
+            { txt: 'Apps integrations', doneAt: 187111111 },
           ],
         },
       },
@@ -57,7 +72,7 @@ function _createNotes() {
         type: 'note-txt',
         isPinned: true,
         info: {
-          txt: 'Do Somemthing!',
+          txt: `Noa's Wedding at 27.2!`,
         },
         style: {
           backgroundColor: '#f1c40f',
@@ -68,7 +83,7 @@ function _createNotes() {
         type: 'note-img',
         info: {
           url: './img/notes/dogs.jpg',
-          title: 'Bobi and Me',
+          title: 'Cutness 100%',
         },
         style: {
           backgroundColor: '#2ecc71',
@@ -89,18 +104,73 @@ function _createNotes() {
             { txt: 'Beers', doneAt: 18712432 },
             { txt: 'Bread', doneAt: 18712432 },
             { txt: 'TimTam', doneAt: 18712432 },
+            { txt: 'Cheese', doneAt: 18712432 },
+            { txt: 'Vegetables', doneAt: 18712432 },
           ],
+        },
+      },
+
+      {
+        id: 'n108',
+        type: 'note-img',
+        info: {
+          url: './img/notes/trip.png',
+          title: 'Trip to america',
+        },
+        style: {
+          backgroundColor: '#fab1a0',
         },
       },
       {
         id: 'n109',
-        type: 'note-video',
+        type: 'note-txt',
+        isPinned: true,
+        info: {
+          txt: `   Roses are red,
+                 Violetts are blue
+                 Theres an unexpected token ':'
+                 at line 32 `,
+        },
         style: {
-          backgroundColor: '#0000',
+          backgroundColor: '#81ecec',
+        },
+      },
+      {
+        id: 'n110',
+        type: 'note-todos',
+        style: {
+          backgroundColor: '#ffeaa7',
         },
         info: {
-          label: 'Nice Video',
-          url: 'https://www.youtube.com/embed/ejNF1Vtupgs',
+          label: 'Cremeschnitte Cake Recipe',
+          todos: [
+            { txt: '1 (15 ounce) can pumpkin puree', doneAt: null },
+            { txt: '3 egg yolks', doneAt: 18712432 },
+            {
+              txt: '1 (14 ounce) can sweetened condensed milk',
+              doneAt: 18712432,
+            },
+            { txt: '1 pack of puff pastry', doneAt: 18712432 },
+            { txt: '1 l milk', doneAt: 18712432 },
+            { txt: '100 g cornflour', doneAt: 18712432 },
+            { txt: '200 g icing sugar', doneAt: 18712432 },
+            { txt: '25 g icing sugar with 1 vanilla pod', doneAt: 18712432 },
+            {
+              txt: '3 eggs',
+              doneAt: 18712432,
+            },
+          ],
+        },
+      },
+      {
+        id: 'n111',
+        type: 'note-video',
+        style: {
+          backgroundColor: '#9b59b6',
+        },
+        info: {
+          label: 'Liverpool Kickin Ass',
+          url: 'https://www.youtube.com/embed/FonkUc371uI',
         },
       },
     ]
@@ -117,7 +187,7 @@ function getImgNote(url) {
       url,
     },
     style: {
-      backgroundColor: '#00d',
+      backgroundColor: '#9b59b6',
     },
     isPinned: true,
   }
@@ -130,6 +200,9 @@ function getTxtNote(txt) {
     info: {
       txt,
     },
+    style: {
+      backgroundColor: '#a29bfe',
+    },
   }
 }
 function getTodosNote(label) {
@@ -139,11 +212,17 @@ function getTodosNote(label) {
       label,
       todos: [{ txt: 'Change me', doneAt: Date.now() }],
     },
+    style: {
+      backgroundColor: '#a29bfe',
+    },
   }
 }
 function getVideoNote(url) {
   return {
     type: 'note-video',
+    style: {
+      backgroundColor: '#9b59b6',
+    },
     info: {
       label: 'Im a Video',
       url,
@@ -152,12 +231,13 @@ function getVideoNote(url) {
 }
 
 function addNewNote(type, value) {
+  if (!value) return
   let note = null
   if (type === 'txt') note = getTxtNote(value)
   if (type === 'img') note = getImgNote(value)
   if (type === 'todo') note = getTodosNote(value)
   if (type === 'video') note = getVideoNote(value)
-  return storageService.post(NOTES_KEY, note)
+  return storageService.postUnshift(NOTES_KEY, note)
 }
 
 function changeBgcColor(noteId, color) {
@@ -184,6 +264,10 @@ function onPinNote(note) {
     console.log('REMOVE FROM SERVICE', res)
     return storageService.postUnshift(NOTES_KEY, note)
   })
+}
+
+function onDuplicate(note) {
+  return storageService.postUnshift(NOTES_KEY, note)
 }
 function getById(noteId) {
   return storageService.get(NOTES_KEY, noteId)

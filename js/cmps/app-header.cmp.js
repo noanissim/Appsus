@@ -1,11 +1,10 @@
 export default {
   template: `
         <header  class="app-header">
-          <div >
+          <div class="logo">
             <router-link @click.native="scrollToTop"  to="/">
-            <img class="logo" src="./img/logo.png" >
+            <img src="./img/capture.png">
             </router-link>
-            
           </div>
 
           <div v-if="menuOpen"  @click="toggleScreen" class="main-screen">
@@ -33,7 +32,6 @@ export default {
     },
     toggleScreen() {
       this.menuOpen = !this.menuOpen
-      console.log(this.menuOpen)
     },
   },
   computed: {},

@@ -13,7 +13,7 @@ export default {
              <note-filter @filtered="setFilter"/>
              <new-note  @noteAdded="getNotes"/>
            </div>
-            <note-preview @pinNote="pinNote"  @updateColor="getNotes" @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
+            <note-preview class='' @duplicate="duplicate" @pinNote="pinNote"  @updateColor="getNotes" @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
     `,
   data() {
@@ -36,6 +36,11 @@ export default {
         this.getNotes()
       })
     },
+    duplicate(note) {
+      notesService.onDuplicate(note).then(note => {
+        this.getNotes()
+      })
+    },
     setFilter(filterBy) {
       this.filterBy = filterBy
     },
@@ -52,16 +57,34 @@ export default {
   },
   computed: {
     notesToShow() {
-      console.log(this.filterBy, 'Filter')
-      if (!this.filterBy || this.filterBy.title === '') return this.notes
+      if (
+        !this.filterBy ||
+        (this.filterBy.title === '' && this.filterBy.selectOpt === 'All')
+      )
+        return this.notes
       const searchStr = this.filterBy.title.toLowerCase()
-      return this.notes.filter((note, idx) => {
-        if (note.type === 'note-txt') {
-          return note.info.txt.toLowerCase().includes(searchStr)
-        } else if (note.type === 'note-todos') {
-          return note.info.label.toLowerCase().includes(searchStr)
-        } else if (note.type === 'note-img') {
-          return note.info.title.toLowerCase().includes(searchStr)
+      return this.notes.filter(note => {
+        if (
+          note.type === 'note-txt' &&
+          (this.filterBy.selectOpt === note.type ||
+            this.filterBy.selectOpt === 'All') &&
+          note.info.txt.toLowerCase().includes(searchStr)
+        ) {
+          return note
+        } else if (
+          note.type === 'note-todos' &&
+          (this.filterBy.selectOpt === note.type ||
+            this.filterBy.selectOpt === 'All') &&
+          note.info.label.toLowerCase().includes(searchStr)
+        ) {
+          return note
+        } else if (
+          note.type === 'note-img' &&
+          (this.filterBy.selectOpt === note.type ||
+            this.filterBy.selectOpt === 'All') &&
+          note.info.title.toLowerCase().includes(searchStr)
+        ) {
+          return note
         }
       })
     },

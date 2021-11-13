@@ -32,7 +32,6 @@ export default {
       else this.placeHolder = 'Whats on your mind?'
       console.log(this.type)
     },
-
     addNote() {
       let val = this.value
       if (this.type === 'video') {
@@ -42,6 +41,7 @@ export default {
       notesService.addNewNote(this.type, val).then(res => {
         this.$emit('noteAdded')
       })
+      this.value = ''
     },
   },
 }

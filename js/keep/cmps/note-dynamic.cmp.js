@@ -53,7 +53,7 @@ const noteVideo = {
         <section class="img-cmp-container">
           <div  class="img-cmp">
             <h4 class="img-title">{{note.info.label}}</h4>
-            <iframe width="300" :src="note.info.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe  width="300" :src="note.info.url" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
         </section>
     `,
@@ -74,12 +74,13 @@ const noteTodos = {
           <button class="add-todo-btn" @click="toggleNewTodo">+</button>
 
           <ul >  
-              <li v-for="(todo,idx) in todoCmp.info.todos">
+              <li class="todo" v-for="(todo,idx) in todoCmp.info.todos">
+              <button @click="removeTodo(idx)" class="remove-todo">X</button>
                 <div class="todo-checkbox">
                   <input @change="setIsDone($event,idx)" :checked ="todo.isChecked" type="checkbox"/>
                   <input v-if="idx===currEditTodo" @keyup.enter="resetIdx" @blur="reportVal(idx)"  v-model="todo.txt" placeholder="What you wanna do?" type="text"/>
                   <p @click="setTodoEdit(idx)"  v-bind:class="{ checked: todo.isChecked }" v-else>{{todo.txt}}</p>
-                    <button @click="removeTodo(idx)" class="remove-todo">X</button>
+                   
                 </div>
               </li>
               <li v-if="isNewTodo">
@@ -148,11 +149,14 @@ export default {
                         :is="note.type" 
                         :note="note" 
                         @setInput="setInput">
+                        
             </component>
     </section> 
     `,
   data() {
-    return {}
+    return {
+      isPinned: false,
+    }
   },
   methods: {
     setInput(noteId) {
