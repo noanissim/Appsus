@@ -26,7 +26,6 @@ export default {
   },
   methods: {
     filter() {
-      // console.log(this.filterBy.selectOpt)
       this.$emit('filtered', {
         ...this.filterBy
       })

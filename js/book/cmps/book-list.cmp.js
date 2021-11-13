@@ -8,19 +8,16 @@ export default {
     template: `
         <ul class="book-list">
             <li v-for="book in books" :key="book.id" class="book-preview-container" >
-                <book-preview :book="book" @click.native="log(book.id)" />
+                <book-preview :book="book"  />
                 <div class="actions">
                     <button  class="book-button" @click="remove(book.id)" >X</button>
-                    <!-- <button @click="select(book)" >Details</button> -->
                     <router-link class="router-link-btn" @click.native="scrollToTop" :to="'/book/'+book.id" >Details</router-link>
                 </div>
             </li>
         </ul>
     `,
 
-    destroyed() {
-        // console.log('destroyed')
-    },
+
     methods: {
         remove(bookId) {
             this.$emit('remove', bookId);
@@ -28,9 +25,7 @@ export default {
         select(book) {
             this.$emit('selected', book);
         },
-        log(bookId) {
-            // console.log('Logging.....', bookId);
-        },
+
         scrollToTop() {
             window.scrollTo(0, 0);
         }

@@ -175,7 +175,6 @@ function getPrevBookId(bookId) {
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOKS_KEY);
     if (!books || !books.length) {
-        // console.log('here');
         books = [{
                 "id": "OXeMG8wNskc",
                 "title": "metus hendrerit",

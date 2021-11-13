@@ -147,7 +147,6 @@ export default {
             })
 
             this.count = ((count / countAll) * 100).toFixed(2)
-            // console.log(count);
             return this.count
         },
         calcStyle() {

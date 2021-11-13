@@ -16,14 +16,10 @@ export default {
     </section>
     `,
 
-    destroyed() {
-        // console.log('destroyed')
-    },
+
     methods: {
 
-        log(emailId) {
-            // console.log('Logging.....', emailId);
-        },
+
         scrollToTop() {
             window.scrollTo(0, 0);
         },

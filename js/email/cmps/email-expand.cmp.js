@@ -5,7 +5,7 @@ import {
 export default {
     props: ['email'],
     template: `
-        <div class="email-expand" @click.stop="expandClick">
+        <div class="email-expand">
             <h3>{{email.subject}}</h3>
             <div class="user-details">
             <div class="contact-user" :style="{'background-color':getColor}">{{showFirstLetter}}</div>
@@ -34,9 +34,7 @@ export default {
         }
     },
     methods: {
-        expandClick() {
-            // console.log('expand click');
-        },
+
         closeDetails() {
             this.$router.push('/email') //move to another pagebu
 
@@ -63,13 +61,10 @@ export default {
             })
             return event
         },
-        isEmailRead() {
-            // console.log(this.email.isRead);
-        },
+
         checkIfIsStarred() {
             return emailService.getById(this.email.id)
                 .then(res => {
-                    console.log(res);
                     return res.isStarred
                 })
         },

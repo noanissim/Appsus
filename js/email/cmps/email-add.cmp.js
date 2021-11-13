@@ -50,9 +50,7 @@ export default {
         body
       } = this.$route.params;
       if (body) {
-        console.log(body);
         this.emailToEdit = emailService.getEmptyEmail()
-        console.log(this.emailToEdit);
         this.emailToEdit.body = 'Sent from notes: ' + body
       }
 

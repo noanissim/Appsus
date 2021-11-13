@@ -149,7 +149,6 @@ function _createEmails() {
 
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
-        // console.log('here');
         emails = [{
                 id: utilService.makeId(),
                 subject: 'Spotify Premium',

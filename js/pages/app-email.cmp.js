@@ -28,8 +28,7 @@ export default {
                 <email-actions  :class="{ emailMenuOpen:isMobileAction}"  v-if="emails" :emails="emailsToShow" @stateClicked="stateClicked"/>
                 <email-list v-if="emails" :emails="emailsToShow" @selected="selectEmail" @removeEmail="removeEmail" @changeStar="changeStar"/>
            </section>
-           <!-- actions  any item is a new route -(stars-filter) -->
-           <!-- emails list  preview  details -->
+          
 
        </section>
     `,
@@ -48,32 +47,28 @@ export default {
     },
     created() {
         this.loadEmails()
-        // this.emails = emailservice.query()
+
     },
 
 
 
     methods: {
         toggleActions() {
-            // console.log('toggle actions');
             this.isMobileAction = !this.isMobileAction
         },
         loadEmails() {
             emailService.query()
                 .then(emails => {
                     this.emails = emails
-                    // console.log(emails);
                 })
         },
         addEmail() {
             this.loadEmails()
         },
         changeStar(isStar, id) {
-            // console.log(isStar, 'thats good');
-            // console.log(id, 'thats good');
+
             emailService.getById(id)
                 .then(res => {
-                    // console.log(res);
                     res.isStarred = isStar
                     emailService.save(res)
                 })
@@ -91,7 +86,6 @@ export default {
                     this.loadEmails();
                 })
                 .catch(err => {
-                    // console.log('err', err);
                     const msg = {
                         txt: 'Error. Please try later',
                         type: 'error'
@@ -110,13 +104,11 @@ export default {
         },
         stateClicked(state) {
             this.isMobileAction = !this.isMobileAction
-            // console.log(state);
             if (state === 'isAll') this.stateBy = null
             else {
                 this[state] = true
                 this.stateBy = state
-                // console.log('this.stateBy', this.stateBy);
-                // console.log(this.isInbox);
+
             }
 
         }
@@ -124,7 +116,6 @@ export default {
     computed: {
         emailsToShow() {
             // returns emails based on the current filter
-            console.log(this.filterBy);
             if (!this.filterBy ||
                 (!this.filterBy.subject &&
                     this.filterBy.selectOption === 'all' &&
@@ -135,7 +126,6 @@ export default {
             const {
                 subject,
             } = this.filterBy
-            // console.log(subject);
             const searchStr = subject.toLowerCase()
             let emailsToShow
 
@@ -151,12 +141,10 @@ export default {
                     (this.stateBy === 'isStar' && email.isStarred == true) ||
                     (this.stateBy === 'isSent' && email.from.email === 'user@appsus.com') ||
                     (this.stateBy === 'isDraft' && email.sentAt === 0))
-                // console.log(ans1);
-                // console.log(ans2);
+
                 return ans1 && ans2 && ans3
             });
             if (this.filterBy.selectOption === 'sortNew' || this.filterBy.selectOption === 'sortOld') {
-                // console.log('works');
                 emailsToShow = []
                 emailsToShow = this.emails.sort((email1, email2) => {
                     if (this.filterBy.selectOption === 'sortNew') return email2.sentAt - email1.sentAt
@@ -164,57 +152,18 @@ export default {
                 })
 
             }
-            // console.log('emailsToShow', emailsToShow);
             return emailsToShow;
         },
 
-        emailsCount() {
-            // console.log(this.emails.length);
-        },
 
-        setFilterInbox(ev, par) {
-            // console.log('bla');
-            // console.log(ev);
-            // console.log(par);
-        },
         sortEmailsForDisplay() {
             let res = this.emails
             res.sort((email1, email2) => {
                 return email1.sentAt - email2.sentAt
             })
-            // console.log(res);
-            // return res
+
         }
 
     },
 
 }
-
-
-// let ans3
-// console.log('this.stateBy', this.stateBy);
-// if (!this.stateBy) {
-//     console.log('no state');
-//     ans3 = email
-// }
-
-// if (this.stateBy === 'isInbox' && email.to === 'user@appsus.com') {
-//     ans3 = email
-//     console.log('isInbox');
-//     console.log(email.to);
-
-// } else if (this.stateBy === 'isStar' && email.isStarred == true) {
-//     ans3 = email
-//     console.log('isStar');
-//     console.log(email.isStarred);
-
-// } else if (this.stateBy === 'isSent' && email.from === 'user@appsus.com') {
-//     console.log('isSent');
-//     ans3 = email
-//     console.log(email.sentAt);
-
-// } else if (this.stateBy === 'isDraft' && email.sentAt === 0) {
-//     console.log('isDraft');
-//     ans3 = email
-//     console.log(email.sentAt);
-// }

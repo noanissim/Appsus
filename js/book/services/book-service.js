@@ -69,7 +69,6 @@ function getGoogleBooks(title) {
     const savedSearchResults = utilService.loadFromStorage(SEARCH_KEY) || {}
     // if (savedSearchResults && savedSearchResults.length) return Promise.resolve(savedSearchResults)
     if (savedSearchResults[title]) {
-        // console.log('local');
         return Promise.resolve(savedSearchResults[title])
     }
 
@@ -77,7 +76,6 @@ function getGoogleBooks(title) {
     return axios.get(url)
         .then(res => {
             //map to all items and execute googleconvert on each one
-            // console.log('fetching from server', res);
             const searchResults = res.data.items.map(book => {
                 return _convertGoogleBook(book)
             })
@@ -87,16 +85,6 @@ function getGoogleBooks(title) {
         })
 }
 
-// id: googleBook.id
-// selfLink: googleBook.selfLink
-// title: googleBook.volumeInfo.title
-// subtitle: googleBook.volumeInfo.subtitle
-// authors: googleBook.volumeInfo.authors
-// description: googleBook.volumeInfo.description
-// pageCount: googleBook.volumeInfo.pageCount
-// categories: googleBook.volumeInfo.categories
-// language: googleBook.volumeInfo.language
-//publishedDate: googleBook.volumeInfo.publishedDate
 
 function getEmptyBook() {
     return {
@@ -175,7 +163,6 @@ function getPrevBookId(bookId) {
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOKS_KEY);
     if (!books || !books.length) {
-        // console.log('here');
         books = [{
                 "id": "OXeMG8wNskc",
                 "title": "metus hendrerit",

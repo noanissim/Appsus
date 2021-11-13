@@ -1,7 +1,6 @@
 export default {
     template: `
         <div class="book-filter">
-            <!-- <label>Search: </label> -->
             <input @input="filter" v-model="filterBy.name" type="text" placeholder="Search book">
             <input @input="filter" v-model.number="filterBy.fromPrice" type="number" placeholder="Min price">
             <input @input="filter" v-model.number="filterBy.toPrice" type="number" placeholder="Max price">
@@ -21,8 +20,6 @@ export default {
             this.$emit('filtered', {
                 ...this.filterBy
             });
-            //deep copy
-            // console.log(JSON.parse(JSON.stringify(this.filterBy)));
             this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)));
         }
     }

@@ -1,4 +1,6 @@
-import { storageService } from '../../services/async-storage-service.js'
+import {
+  storageService
+} from '../../services/async-storage-service.js'
 
 export const notesService = {
   query,
@@ -20,8 +22,7 @@ const notes = _createNotes()
 function _createNotes() {
   let notes = loadFromStorage(NOTES_KEY)
   if (!notes || !notes.length) {
-    notes = [
-      {
+    notes = [{
         id: 'n101',
         type: 'note-txt',
         isPinned: true,
@@ -74,8 +75,7 @@ function _createNotes() {
         },
         info: {
           label: 'Finish Sprint Features',
-          todos: [
-            {
+          todos: [{
               txt: 'Filtering by type',
               doneAt: null,
             },
@@ -139,8 +139,7 @@ function _createNotes() {
         },
         info: {
           label: 'Super-market list',
-          todos: [
-            {
+          todos: [{
               txt: 'Milk',
               doneAt: null,
             },
@@ -220,8 +219,7 @@ function _createNotes() {
         },
         info: {
           label: 'Cremeschnitte Cake Recipe',
-          todos: [
-            {
+          todos: [{
               txt: '3 egg yolks',
               doneAt: 18712432,
             },
@@ -318,12 +316,10 @@ function getTodosNote(label) {
     type: 'note-todos',
     info: {
       label,
-      todos: [
-        {
-          txt: 'Change me',
-          doneAt: Date.now(),
-        },
-      ],
+      todos: [{
+        txt: 'Change me',
+        doneAt: Date.now(),
+      }, ],
     },
     style: {
       backgroundColor: '#a29bfe',

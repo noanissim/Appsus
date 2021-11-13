@@ -66,7 +66,6 @@ export default {
                 const {
                     bookId
                 } = this.$route.params;
-                // console.log('bookId', bookId);
                 bookService.getById(bookId)
                     .then(book => this.book = book);
                 bookService.getNextBookId(bookId)
@@ -87,9 +86,7 @@ export default {
                 this.book = book
                 this.reviews = reviews
             })
-        // .catch(err => {
-        //     console.log(err);
-        // })
+
     },
     methods: {
         closeDetails() {
@@ -97,22 +94,15 @@ export default {
         },
 
         addReview(review) {
-            // let book = {
-            //     ...this.book
-            // }
 
-            // book.reviews = this.reviews
-            // bookService.save(book)
             bookService.addReviewToBook(this.book.id, review)
                 .then(res => {
-                    // console.log(res)
                     this.reviews.push(review)
                     const msg = {
                         txt: 'Added successfully',
                         type: 'success',
                         link: '/book'
                     }
-                    // console.log(msg);
                     eventBus.$emit('showMsg', msg);
                 })
                 .catch(err => {
@@ -127,13 +117,11 @@ export default {
             bookService.deleteReviewFromBook(this.book.id, reviewIdx)
                 .then(res => {
                     this.reviews = res.reviews
-                    // console.log(res)
                     const msg = {
                         txt: 'deleted successfully',
                         type: 'success',
                         link: '/book'
                     }
-                    // console.log(msg);
                     eventBus.$emit('showMsg', msg);
                 })
                 .catch(err => {

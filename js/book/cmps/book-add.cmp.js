@@ -14,10 +14,8 @@ export default {
         <section class=" book-add">
             <h3>Add a new book</h3>
 
-            <!-- <form @submit.prevent="search" > -->
               <input v-model="searchVal" @input="search"  type="text" placeholder="Add a new book">
               <button class="btn-search book-button">Search</button> <!--just for user experience -->
-            <!-- </form> -->
 
             <section v-if="books" class="books-options">
                 <ul class="clean-list" v-for="(book,idx) in books">
@@ -44,12 +42,7 @@ export default {
     },
 
     methods: {
-        search2() {
-            // console.log(utilService.debounce(this.search, 3000))
-        },
-        func() {
-            // console.log('func');
-        },
+
 
         search() {
 
@@ -59,18 +52,14 @@ export default {
             }
             bookService.getGoogleBooks(this.searchVal)
                 .then(books => {
-                    // console.log('books:', books);
                     this.books = books
                 })
 
         },
         addBook(idx) {
-            // console.log('idx', idx);
             this.currBook = this.books[idx]
-            // console.log(this.currBook)
             bookService.saveBookFromGoogle(this.currBook)
                 .then(res => {
-                    console.log(res);
                     this.$emit('bookAdded')
                     this.books = null
                     this.searchVal = null
@@ -79,7 +68,6 @@ export default {
                         type: 'success',
                         link: `/book/${this.currBook.id}`
                     }
-                    // console.log(msg);
                     eventBus.$emit('showMsgOnAddBook', msg);
                 })
                 .catch(err => {

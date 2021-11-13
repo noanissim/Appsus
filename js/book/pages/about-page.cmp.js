@@ -14,7 +14,6 @@ export default {
             </div>
            
             </transition>
-            <!-- <button @click="show = !show">click me!</button> -->
             <nav  class="router-link-about-container" >
                 <router-link class="router-link-about" to="team">Team</router-link> 
                 <router-link class="router-link-about" to="service">Services</router-link>
@@ -28,23 +27,12 @@ export default {
             show: true
         }
     },
-    methods: {
-        callBus() {
-            // eventBus.$emit('puk');
-            // eventBus.$emit('puk2');
 
-        }
-    },
     created() {
-        this.myInterval = setTimeout(() => {
-            // console.log('Created');
-        }, 1000)
+        this.myInterval = setTimeout(() => {}, 1000)
     },
     destroyed() {
         clearInterval(this.myInterval)
     },
-    mounted() {
-        // console.log('Mounted');
-        // console.log(this.$refs.header);
-    }
+
 };

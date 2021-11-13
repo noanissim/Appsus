@@ -35,7 +35,6 @@ export default {
     },
     created() {
         this.loadBooks()
-        // this.books = bookService.query()
 
     },
 
@@ -43,7 +42,6 @@ export default {
         loadBooks() {
             bookService.query()
                 .then(books => {
-                    // console.log(books);
                     this.books = books
                 })
         },
@@ -62,7 +60,6 @@ export default {
                     this.loadBooks();
                 })
                 .catch(err => {
-                    // console.log('err', err);
                     const msg = {
                         txt: 'Error. Please try later',
                         type: 'error'

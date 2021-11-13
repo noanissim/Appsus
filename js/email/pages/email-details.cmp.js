@@ -29,7 +29,7 @@ export default {
            
            
             
-            <span class="fa fa-star star-img" :class="{'checked-star':email.isStarred, 'unChecked-star':!email.isStarred}" @click="changeColor"></span>
+            <span class="fa fa-star star-img" :class="{'checked-star':email.isStarred, 'unChecked-star':!email.isStarred}"></span>
 
             <div class="actions-email-preview">
                     <button title="Delete" class="clean-btn btn-delete-email" @click="removeEmail(email.id)" >
@@ -101,9 +101,7 @@ export default {
         scrollToTop() {
             window.scrollTo(0, 0);
         },
-        changeColor() {
-            // console.log('hello', this.email)
-        }
+
     },
     computed: {
         convertToTime() {
@@ -112,9 +110,7 @@ export default {
             })
             return event
         },
-        isEmailRead() {
-            // console.log(this.email.isRead);
-        },
+
         checkIfIsStarred() {
             return emailService.getById(this.email.id)
                 .then(res => {
