@@ -11,7 +11,7 @@ export default {
 
              <a class="btn-menu" @click="toggleScreen"><img src="./img/notes/view-more.png"/></a>
 
-             <ul v-bind:class="{ 'menu-open': menuOpen }" class="main-nav flex clean-list">
+             <ul v-bind:class="{ 'menu-open': menuOpen }" class="main-nav-container flex clean-list">
                 <li><router-link @click.native="scrollToTop"  to="/">Home</router-link></li>
                 <li> <router-link @click.native="scrollToTop"  to="/email">Emails</router-link></li>
                 <li><router-link @click.native="scrollToTop"  to="/keep">Keep</router-link></li>

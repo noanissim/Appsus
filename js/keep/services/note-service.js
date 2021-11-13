@@ -1,6 +1,4 @@
-import {
-  storageService
-} from '../../services/async-storage-service.js'
+import { storageService } from '../../services/async-storage-service.js'
 
 export const notesService = {
   query,
@@ -12,7 +10,7 @@ export const notesService = {
   changeBgcColor,
   onPinNote,
   onDuplicate,
-  getTxtNoteFromEmail
+  getTxtNoteFromEmail,
 }
 
 const NOTES_KEY = 'notesDB'
@@ -22,7 +20,8 @@ const notes = _createNotes()
 function _createNotes() {
   let notes = loadFromStorage(NOTES_KEY)
   if (!notes || !notes.length) {
-    notes = [{
+    notes = [
+      {
         id: 'n101',
         type: 'note-txt',
         isPinned: true,
@@ -30,18 +29,7 @@ function _createNotes() {
           txt: 'Water Your Plants Boy!',
         },
         style: {
-          backgroundColor: '#ffffff'
-        },
-      },
-      {
-        id: 'n102',
-        type: 'note-img',
-        info: {
-          url: './img/notes/user2.png',
-          title: 'My Elegant Panda',
-        },
-        style: {
-          backgroundColor: '#a29bfe',
+          backgroundColor: '#ffffff',
         },
       },
       {
@@ -56,6 +44,29 @@ function _createNotes() {
         },
       },
       {
+        id: 'n113',
+        type: 'note-txt',
+        isPinned: true,
+        info: {
+          txt: '“99 little bugs in the code. 99 little bugs in the code. Take one down, patch it around. 127 little bugs in the code …”!',
+        },
+        style: {
+          backgroundColor: '#81ecec',
+        },
+      },
+      {
+        id: 'n102',
+        type: 'note-img',
+        info: {
+          url: './img/notes/user2.png',
+          title: 'My Elegant Panda',
+        },
+        style: {
+          backgroundColor: '#a29bfe',
+        },
+      },
+
+      {
         id: 'n103',
         type: 'note-todos',
         style: {
@@ -63,25 +74,26 @@ function _createNotes() {
         },
         info: {
           label: 'Finish Sprint Features',
-          todos: [{
+          todos: [
+            {
               txt: 'Filtering by type',
-              doneAt: null
+              doneAt: null,
             },
             {
               txt: 'Add Color feature',
-              doneAt: 187111111
+              doneAt: 187111111,
             },
             {
               txt: 'Design Break !!',
-              doneAt: 187111111
+              doneAt: 187111111,
             },
             {
               txt: 'You forgot to eat',
-              doneAt: 187111111
+              doneAt: 187111111,
             },
             {
               txt: 'Apps integrations',
-              doneAt: 187111111
+              doneAt: 187111111,
             },
           ],
         },
@@ -101,8 +113,19 @@ function _createNotes() {
         id: 'n105',
         type: 'note-img',
         info: {
-          url: './img/notes/dogs.jpg',
-          title: 'Cutness 100%',
+          url: './img/notes/sky.jpg',
+          title: 'Sky after the sprint',
+        },
+        style: {
+          backgroundColor: '#2ecc71',
+        },
+      },
+      {
+        id: 'n1014',
+        type: 'note-img',
+        info: {
+          url: './img/notes/smile-sky.jpg',
+          title: 'Sky before the sprint',
         },
         style: {
           backgroundColor: '#2ecc71',
@@ -112,41 +135,42 @@ function _createNotes() {
         id: 'n106',
         type: 'note-todos',
         style: {
-          backgroundColor: '#9b59b6',
+          backgroundColor: '#ffffff',
         },
         info: {
           label: 'Super-market list',
-          todos: [{
+          todos: [
+            {
               txt: 'Milk',
-              doneAt: null
+              doneAt: null,
             },
             {
               txt: 'Coffe',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'Bananas',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'Beers',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'Bread',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'TimTam',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'Cheese',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: 'Vegetables',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
           ],
         },
@@ -161,6 +185,17 @@ function _createNotes() {
         },
         style: {
           backgroundColor: '#fab1a0',
+        },
+      },
+      {
+        id: 'n117',
+        type: 'note-video',
+        style: {
+          backgroundColor: '#9b59b6',
+        },
+        info: {
+          label: 'Amnon the Butcher',
+          url: 'https://www.youtube.com/embed/1fYmmie3lag',
         },
       },
       {
@@ -185,13 +220,10 @@ function _createNotes() {
         },
         info: {
           label: 'Cremeschnitte Cake Recipe',
-          todos: [{
-              txt: '1 (15 ounce) can pumpkin puree',
-              doneAt: null
-            },
+          todos: [
             {
               txt: '3 egg yolks',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '1 (14 ounce) can sweetened condensed milk',
@@ -199,23 +231,23 @@ function _createNotes() {
             },
             {
               txt: '1 pack of puff pastry',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '1 l milk',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '100 g cornflour',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '200 g icing sugar',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '25 g icing sugar with 1 vanilla pod',
-              doneAt: 18712432
+              doneAt: 18712432,
             },
             {
               txt: '3 eggs',
@@ -286,10 +318,12 @@ function getTodosNote(label) {
     type: 'note-todos',
     info: {
       label,
-      todos: [{
-        txt: 'Change me',
-        doneAt: Date.now()
-      }],
+      todos: [
+        {
+          txt: 'Change me',
+          doneAt: Date.now(),
+        },
+      ],
     },
     style: {
       backgroundColor: '#a29bfe',

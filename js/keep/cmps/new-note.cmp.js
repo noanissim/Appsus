@@ -1,6 +1,4 @@
-import {
-  notesService
-} from '../services/note-service.js'
+import { notesService } from '../services/note-service.js'
 export default {
   props: ['emailNote'],
   template: `
@@ -11,8 +9,6 @@ export default {
                     <button @click="onChangeType($event,'img')"><img src="./img/notes/gallery.png"/></button>
                     <button @click="onChangeType($event,'video')"><img src="./img/notes/video.png"/></button>
                     <button @click="onChangeType($event,'todo')"><img src="./img/notes/list.png"/></button>
-                    
-
                 </div>
             </div>
         `,
@@ -37,7 +33,7 @@ export default {
   methods: {
     newNote() {
       this.$emit('newNote', {
-        ...this.type
+        ...this.type,
       })
     },
     onChangeType(ev, type) {
@@ -54,7 +50,6 @@ export default {
       }
       this.$emit('noteAdded', this.type, val)
       this.value = ''
-
     },
   },
 }
