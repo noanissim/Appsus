@@ -42,7 +42,7 @@ export default {
     },
     methods: {
         expandClick() {
-            console.log('expand click');
+            // console.log('expand click');
         },
         closeDetails() {
             this.$router.push('/email') //move to another pagebu
