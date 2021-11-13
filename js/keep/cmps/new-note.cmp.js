@@ -25,10 +25,13 @@ export default {
   },
   created() {
     if (this.emailNote) {
-      notesService.getTxtNoteFromEmail(this.emailNote.txt).then(res => {
-        this.$emit('noteAdded')
-        this.$router.push('/keep')
-      })
+      // notesService.getTxtNoteFromEmail(this.emailNote.txt).then(res => {
+      setTimeout(() => {
+        this.$emit('noteAdded', 'txt', this.emailNote.txt)
+      }, 0)
+      this.$router.push('/keep')
+
+      // })
     }
   },
   methods: {

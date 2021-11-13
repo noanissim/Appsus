@@ -278,7 +278,7 @@ function getTxtNoteFromEmail(txt) {
       backgroundColor: '#a29bfe',
     },
   }
-  return storageService.post(NOTES_KEY, note)
+  return storageService.postUnshift(NOTES_KEY, note)
 }
 
 function getTodosNote(label) {

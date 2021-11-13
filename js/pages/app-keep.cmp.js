@@ -40,22 +40,14 @@ export default {
         const {
           fullname
         } = this.$route.params;
-        // console.log('emailId', emailId);
-        // console.log('subject', subject);
-        // console.log('body', body);
-        // console.log('fullname', fullname);
-        if (emailId !== undefined) {
+
+        if (emailId) {
           this.emailNote = {
             txt: 'Note recevied from email!!! Id:' + emailId + ', subject: ' + subject + ', body: ' + body + ' ,from: ' + fullname
           }
         }
 
-        // bookService.getById(bookId)
-        //     .then(book => this.book = book);
-        // bookService.getNextBookId(bookId)
-        //     .then(bookId => this.nextBookId = bookId);
-        // bookService.getPrevBookId(bookId)
-        //     .then(bookId => this.previousBookId = bookId);
+
       },
       immediate: true
     }
