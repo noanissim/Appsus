@@ -78,7 +78,10 @@ border:  none;
 
 .add-buttons-container{
     display: flex;
-    
+}
+.add-buttons-container button:hover{
+   background-color: rgba(173, 173, 173, 0.199);
+   border-radius: 10px;
 }
 .add-buttons-container img{
    opacity: 0.5;

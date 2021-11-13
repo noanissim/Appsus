@@ -24,7 +24,7 @@ function _createNotes() {
         type: 'note-txt',
         isPinned: true,
         info: {
-          txt: 'Fullstack Me Baby!',
+          txt: 'Water Your Plants Boy!',
         },
         style: { backgroundColor: '#ffffff' },
       },
@@ -46,7 +46,7 @@ function _createNotes() {
           backgroundColor: '#9b59b6',
         },
         info: {
-          label: 'Class = 0 Maamatz',
+          label: `Class = "0 Maamatz"`,
           url: 'https://www.youtube.com/embed/ejNF1Vtupgs',
         },
       },
@@ -176,7 +176,6 @@ function _createNotes() {
     ]
     saveToStorage(NOTES_KEY, notes)
   }
-  console.log(notes)
   return notes
 }
 

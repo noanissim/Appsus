@@ -14,7 +14,7 @@ export default {
                         <router-link @click.native="scrollToTop"  to="/book">Books</router-link>
                 </div>
             </div>
-                <img src="./img/home-img-small.png"/>
+                <img src="./img/home.png"/>
         </div>
 
         </section>
