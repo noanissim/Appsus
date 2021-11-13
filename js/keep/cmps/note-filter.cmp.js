@@ -20,12 +20,16 @@ export default {
     }
   },
   created() {
-    this.$emit('filtered', { ...this.filterBy })
+    this.$emit('filtered', {
+      ...this.filterBy
+    })
   },
   methods: {
     filter() {
-      console.log(this.filterBy.selectOpt)
-      this.$emit('filtered', { ...this.filterBy })
+      // console.log(this.filterBy.selectOpt)
+      this.$emit('filtered', {
+        ...this.filterBy
+      })
     },
   },
 }

@@ -107,32 +107,34 @@ const noteTodos = {
   methods: {
     setTodoEdit(idx) {
       this.currEditTodo = idx
-      console.log(idx)
+      // console.log(idx)
     },
     resetIdx() {
       this.currEditTodo = null
     },
     removeTodo(idx) {
-      console.log(idx)
+      // console.log(idx)
       this.todoCmp.info.todos.splice(idx, 1)
       this.$emit('setInput', this.todoCmp)
     },
     addNewTodo() {
-      this.todoCmp.info.todos.push({ ...this.todoVal })
+      this.todoCmp.info.todos.push({
+        ...this.todoVal
+      })
       this.$emit('setInput', this.todoCmp)
       this.todoVal.txt = ''
     },
     setIsDone(ev, idx) {
       this.todoCmp.info.todos[idx].isChecked = ev.target.checked
-      console.log('ev', ev.target.checked)
+      // console.log('ev', ev.target.checked)
       this.reportVal(idx)
     },
     reportVal() {
-      console.log('THIS ONE', this.todoCmp.info)
+      // console.log('THIS ONE', this.todoCmp.info)
       for (var i = 0; i < this.todoVal.txt.length; i++) {
         this.todoCmp.info.todos[0] = this.todoVal
       }
-      console.log('todoCMP', this.todoCmp)
+      // console.log('todoCMP', this.todoCmp)
       this.$emit('setInput', this.todoCmp)
     },
     toggleNewTodo() {
@@ -163,7 +165,7 @@ export default {
       this.$emit('setInput', noteId)
     },
     save() {
-      console.log('Survey Answers', this.answers)
+      // console.log('Survey Answers', this.answers)
     },
   },
   created() {},

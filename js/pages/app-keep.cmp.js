@@ -1,5 +1,9 @@
-import { eventBus } from '../services/event-bus-service.js'
-import { notesService } from '../keep/services/note-service.js'
+import {
+  eventBus
+} from '../services/event-bus-service.js'
+import {
+  notesService
+} from '../keep/services/note-service.js'
 import noteList from '../keep/cmps/note-list.cmp.js'
 import notePreview from '../keep/cmps/note-preview.cmp.js'
 import noteFilter from '../keep/cmps/note-filter.cmp.js'
@@ -11,7 +15,7 @@ export default {
            <!-- search with filter -->
            <div class="searchBar-container">
              <note-filter @filtered="setFilter"/>
-             <new-note  @noteAdded="getNotes"/>
+             <new-note :emailNote="emailNote" @noteAdded="getNotes"/>
            </div>
             <note-preview class='' @duplicate="duplicate" @pinNote="pinNote"  @updateColor="getNotes" @updateInput="updateNote"  @removeNote="removeNote" :notes="notesToShow"/>
         </section>
@@ -20,10 +24,46 @@ export default {
     return {
       notes: null,
       filterBy: null,
+      emailNote: null
     }
   },
   created() {
     this.getNotes()
+  },
+  watch: {
+    '$route.params.emailId': {
+      handler() {
+        const {
+          emailId
+        } = this.$route.params;
+        const {
+          subject
+        } = this.$route.params;
+        const {
+          body
+        } = this.$route.params;
+        const {
+          fullname
+        } = this.$route.params;
+        // console.log('emailId', emailId);
+        // console.log('subject', subject);
+        // console.log('body', body);
+        // console.log('fullname', fullname);
+        if (emailId !== undefined) {
+          this.emailNote = {
+            txt: 'Note recevied from email!!! Id:' + emailId + ', subject: ' + subject + ', body: ' + body + ' ,from: ' + fullname
+          }
+        }
+
+        // bookService.getById(bookId)
+        //     .then(book => this.book = book);
+        // bookService.getNextBookId(bookId)
+        //     .then(bookId => this.nextBookId = bookId);
+        // bookService.getPrevBookId(bookId)
+        //     .then(bookId => this.previousBookId = bookId);
+      },
+      immediate: true
+    }
   },
   methods: {
     getNotes() {

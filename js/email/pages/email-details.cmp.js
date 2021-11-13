@@ -35,9 +35,9 @@ export default {
                     <button title="Delete" class="clean-btn btn-delete-email" @click="removeEmail(email.id)" >
                         <img class="action-img" src="./img/email/delete.png">
                     </button>
-                    <button class="clean-btn" title="Note">
+                    <router-link class="clean-btn" title="Note"  @click.native="scrollToTop" :to="'/keep/'+email.id+'/'+email.subject+'/'+email.from.fullname+'/'+email.body">
                         <img class="action-img" src="./img/email/edit.png">
-                    </button>
+                    </router-link>
                     <router-link title="Go back"  class="btn btn-close-email" @click.native="scrollToTop" to="/email">
                         <img class="action-img" src="./img/email/return.png">
                     </router-link>
@@ -64,7 +64,7 @@ export default {
                 const {
                     emailId
                 } = this.$route.params;
-                console.log('emailId', emailId);
+                // console.log('emailId', emailId);
                 emailService.getById(emailId)
                     .then(email => this.email = email);
                 // emailService.getNextemailId(emailId)
@@ -87,7 +87,7 @@ export default {
                 // if (email.isRead === true)
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
             })
     },
     methods: {
@@ -96,7 +96,7 @@ export default {
 
         },
         removeEmail(emailId) {
-            console.log('not deleteing');
+            // console.log('not deleteing');
             emailService.remove(emailId)
                 .then(res => {
                     this.$router.push('/email')
@@ -126,7 +126,7 @@ export default {
         checkIfIsStarred() {
             return emailService.getById(this.email.id)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     return res.isStarred
                 })
         },

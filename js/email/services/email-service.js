@@ -152,7 +152,7 @@ function _createEmails() {
 
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
-        console.log('here');
+        // console.log('here');
         emails = [{
                 id: utilService.makeId(),
                 subject: 'Message 1',

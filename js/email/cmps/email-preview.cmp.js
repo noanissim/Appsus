@@ -63,8 +63,8 @@ export default {
         emailClicked(ev) {
             ev.stopPropagation();
             this.isExpand = !this.isExpand
-            console.log(this.isExpand);
-            console.log(this.email);
+            // console.log(this.isExpand);
+            // console.log(this.email);
         },
         changeColor(emailId) {
             this.isStar = !this.isStar

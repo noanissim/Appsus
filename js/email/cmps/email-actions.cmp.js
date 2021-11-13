@@ -16,12 +16,12 @@ export default {
         <div class=" email-actions-container">
 
                 <router-link class="btn btn-action btn-compose" to="/email/add">
-                <img src="../../../img/email/plus.png" class="action-img">    
+                <img src="./img/email/plus.png" class="action-img">    
                 Compose</router-link>
 
                 <button class="btn btn-action" :class="{clicked:state.isAll}"  @click="setFilterAll">
                 <div class="btn-info">
-                    <img src="../../../img/email/mail (2).png" class="action-img">    
+                    <img src="./img/email/mail (2).png" class="action-img">    
                     All
                     {{countAll}}
                 </div>
@@ -29,7 +29,7 @@ export default {
 
                 <button class="btn btn-action" :class="{clicked:state.isInbox}" @click="setFilterInbox">
                 <div class="btn-info">
-                    <img src="../../../img/email/inbox.png" class="action-img">    
+                    <img src="./img/email/inbox.png" class="action-img">    
                     Inbox
                     {{countInbox}}
                 </div>
@@ -37,7 +37,7 @@ export default {
 
                 <button class="btn btn-action" :class="{clicked:state.isStar}" @click="setFilterStarred">
                 <div class="btn-info">
-                    <img src="../../../img/email/star.png" class="action-img">    
+                    <img src="./img/email/star.png" class="action-img">    
                     Starred
                     {{countStarred}}
                 </div>
@@ -45,7 +45,7 @@ export default {
 
                 <button class="btn btn-action" :class="{clicked:state.isSent}" @click="setFilterSent">
                 <div class="btn-info">
-                    <img src="../../../img/email/mail (1).png" class="action-img">    
+                    <img src="./img/email/mail (1).png" class="action-img">    
                     Sent
                     {{countSent}}
                 </div>
@@ -53,7 +53,7 @@ export default {
 
                 <button class="btn btn-action" :class="{clicked:state.isDraft}" @click="setFilterDrafts">
                 <div class="btn-info">
-                    <img src="../../../img/email/draft.png" class="action-img">    
+                    <img src="./img/email/draft.png" class="action-img">    
                     Drafts
                     {{countDrafts}}
                 </div>

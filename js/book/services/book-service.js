@@ -1,9 +1,9 @@
 import {
     utilService
-} from './util-service.js';
+} from '../../services/util-service.js';
 import {
     storageService
-} from './async-storage-service.js';
+} from '../../services/async-storage-service.js';
 
 const BOOKS_KEY = 'books';
 const SEARCH_KEY = 'searchedBooks'

@@ -1,3 +1,4 @@
+@import url('./apps/book/book-main.css');
 @import url('./apps/keep/note-preview.css');
 @import url('./apps/email/email-main.css');
 
@@ -95,6 +96,8 @@ body {
     right: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    justify-content: flex-start;
     height: 100vh;
     flex-direction: column;
     background-color: rgba(231, 231, 231, 0.9);

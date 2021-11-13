@@ -17,22 +17,22 @@ export default {
     `,
 
     destroyed() {
-        console.log('destroyed')
+        // console.log('destroyed')
     },
     methods: {
 
         log(emailId) {
-            console.log('Logging.....', emailId);
+            // console.log('Logging.....', emailId);
         },
         scrollToTop() {
             window.scrollTo(0, 0);
         },
         removeEmail(emailId) {
-            console.log(emailId, 'i remove this');
+            // console.log(emailId, 'i remove this');
             this.$emit('removeEmail', emailId);
         },
         changeStar(isStar, id) {
-            console.log(isStar, 'is star?');
+            // console.log(isStar, 'is star?');
             this.$emit('changeStar', isStar, id);
         }
     },

@@ -30,8 +30,8 @@ export default {
                 ...this.filterBy
             });
             //deep copy
-            console.log(this.filterBy.selectOption);
-            console.log(JSON.parse(JSON.stringify(this.filterBy)));
+            // console.log(this.filterBy.selectOption);
+            // console.log(JSON.parse(JSON.stringify(this.filterBy)));
             this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)));
         },
 

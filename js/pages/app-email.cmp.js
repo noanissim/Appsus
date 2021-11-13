@@ -55,25 +55,25 @@ export default {
 
     methods: {
         toggleActions() {
-            console.log('toggle actions');
+            // console.log('toggle actions');
             this.isMobileAction = !this.isMobileAction
         },
         loadEmails() {
             emailService.query()
                 .then(emails => {
                     this.emails = emails
-                    console.log(emails);
+                    // console.log(emails);
                 })
         },
         addEmail() {
             this.loadEmails()
         },
         changeStar(isStar, id) {
-            console.log(isStar, 'thats good');
-            console.log(id, 'thats good');
+            // console.log(isStar, 'thats good');
+            // console.log(id, 'thats good');
             emailService.getById(id)
                 .then(res => {
-                    console.log(res);
+                    // console.log(res);
                     res.isStarred = isStar
                     emailService.save(res)
                 })
@@ -91,7 +91,7 @@ export default {
                     this.loadEmails();
                 })
                 .catch(err => {
-                    console.log('err', err);
+                    // console.log('err', err);
                     const msg = {
                         txt: 'Error. Please try later',
                         type: 'error'
@@ -110,12 +110,12 @@ export default {
         },
         stateClicked(state) {
             this.isMobileAction = !this.isMobileAction
-            console.log(state);
+            // console.log(state);
             if (state === 'isAll') this.stateBy = null
             else {
                 this[state] = true
                 this.stateBy = state
-                console.log('this.stateBy', this.stateBy);
+                // console.log('this.stateBy', this.stateBy);
                 // console.log(this.isInbox);
             }
 
@@ -124,7 +124,7 @@ export default {
     computed: {
         emailsToShow() {
             // returns emails based on the current filter
-            console.log(this.filterBy);
+            // console.log(this.filterBy);
             if (!this.filterBy ||
                 (!this.filterBy.subject &&
                     this.filterBy.selectOption === 'all' &&
@@ -135,7 +135,7 @@ export default {
             const {
                 subject,
             } = this.filterBy
-            console.log(subject);
+            // console.log(subject);
             const searchStr = subject.toLowerCase()
             let emailsToShow
 
@@ -156,7 +156,7 @@ export default {
                 return ans1 && ans2 && ans3
             });
             if (this.filterBy.selectOption === 'sortNew' || this.filterBy.selectOption === 'sortOld') {
-                console.log('works');
+                // console.log('works');
                 emailsToShow = []
                 emailsToShow = this.emails.sort((email1, email2) => {
                     if (this.filterBy.selectOption === 'sortNew') return email2.sentAt - email1.sentAt
@@ -164,25 +164,25 @@ export default {
                 })
 
             }
-            console.log('emailsToShow', emailsToShow);
+            // console.log('emailsToShow', emailsToShow);
             return emailsToShow;
         },
 
         emailsCount() {
-            console.log(this.emails.length);
+            // console.log(this.emails.length);
         },
 
         setFilterInbox(ev, par) {
-            console.log('bla');
-            console.log(ev);
-            console.log(par);
+            // console.log('bla');
+            // console.log(ev);
+            // console.log(par);
         },
         sortEmailsForDisplay() {
             let res = this.emails
             res.sort((email1, email2) => {
                 return email1.sentAt - email2.sentAt
             })
-            console.log(res);
+            // console.log(res);
             // return res
         }
 
