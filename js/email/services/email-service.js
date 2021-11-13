@@ -21,10 +21,6 @@ export const emailService = {
 
 };
 
-
-
-
-
 function query() {
     return storageService.query(EMAILS_KEY);
 }
@@ -42,30 +38,9 @@ function saveSentEmails(email) {
     return storageService.postUnshift(EMAILS_KEY, email);
 }
 
-
-
 function getById(emailId) {
     return storageService.get(EMAILS_KEY, emailId);
 }
-
-// function addReviewToEmail(emailId, review) {
-//     return getById(emailId)
-//         .then(email => {
-//             if (!email.reviews) email.reviews = []
-//             email.reviews.push(review)
-//             return save(email)
-//         })
-
-// }
-
-// function deleteReviewFromEmail(emailId, reviewIdx) {
-//     return getById(emailId)
-//         .then(email => {
-//             (email.reviews).splice(reviewIdx, 1)
-//             return save(email)
-//         })
-
-// }
 
 let loggedinUser = {
     email: 'user@appsus.com',
@@ -73,9 +48,7 @@ let loggedinUser = {
 }
 
 function getEmptyEmail() {
-
     return _createEmail();
-
 }
 
 
@@ -149,97 +122,231 @@ function _createEmails() {
         email: 'scott@gmail.com',
         fullname: 'Scott Disick'
     }
+    let otherUser6 = {
+        email: 'dropbox@gmail.com',
+        fullname: 'Dropbox'
+    }
+    let otherUser7 = {
+        email: 'linkedin@gmail.com',
+        fullname: 'LinkedIn'
+    }
+    let otherUser8 = {
+        email: 'github@gmail.com',
+        fullname: 'Github'
+    }
+    let otherUser9 = {
+        email: 'spotify@gmail.com',
+        fullname: 'Spotify'
+    }
+    let otherUser10 = {
+        email: 'avocode@gmail.com',
+        fullname: 'Avocode'
+    }
+    let otherUser11 = {
+        email: 'fontawesome@gmail.com',
+        fullname: 'Font Awesome'
+    }
 
     let emails = utilService.loadFromStorage(EMAILS_KEY);
     if (!emails || !emails.length) {
         // console.log('here');
         emails = [{
                 id: utilService.makeId(),
-                subject: 'Message 1',
-                body: 'Skims is the best',
+                subject: 'Spotify Premium',
+                body: 'Don\'t miss one month free trial!',
                 isRead: false,
                 isStarred: false,
                 lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                to: otherUser1,
-                from: loggedinUser
+                sentAt: 1551133365594,
+                to: loggedinUser,
+                from: otherUser9
             },
             {
                 id: utilService.makeId(),
-                subject: 'Message 2',
-                body: 'Of course you do because you get 10%. That is sick.',
+                subject: 'Your Avocode free trial is over',
+                body: 'The free trial for noanissim5\'s team has ended. Please log in and purchase a subscription within 14 days to keep working on your design projects',
                 isRead: false,
                 isStarred: false,
                 lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                from: otherUser2,
-                to: loggedinUser
+                sentAt: 1551133930500,
+                to: loggedinUser,
+                from: otherUser10
             },
             {
                 id: utilService.makeId(),
-                subject: 'Message 3',
-                body: 'You\'re doing amazing sweetie',
+                subject: 'Dropbox is full!',
+                body: 'Ziv and 68 others made changes in your shared folders‏‏',
                 isRead: false,
                 isStarred: false,
                 lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                to: otherUser4,
-                from: loggedinUser
+                sentAt: 1551133897494,
+                to: loggedinUser,
+                from: otherUser6
             },
             {
                 id: utilService.makeId(),
-                subject: 'Message 4',
-                body: 'Kim, would you stop taking pictures of yourself? Your sister’s going to jail',
-                isRead: false,
-                isStarred: false,
-                lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                to: otherUser4,
-                from: loggedinUser
-            },
-            {
-                id: utilService.makeId(),
-                subject: 'Message 5',
-                body: 'Kim, there’s people that are dying',
-                isRead: false,
-                isStarred: false,
-                lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                to: otherUser3,
-                from: loggedinUser
-            },
-            {
-                id: utilService.makeId(),
-                subject: 'Message 6',
-                body: 'You know, I’ve realized that I’m probably just perfect and it’s everybody else around me that’s got issues',
-                isRead: false,
-                isStarred: false,
-                lables: ['important', 'romantic'],
-                sentAt: 1551133930594,
-                to: otherUser5,
-                from: loggedinUser
-            },
-            {
-                id: utilService.makeId(),
-                subject: 'Message 7',
-                body: 'Aunty Kris, it’s me, Todd Kraines',
+                subject: 'Israel just posted',
+                body: 'Israel Israeli recently posted‏‏, go check it out!',
                 isRead: false,
                 isStarred: false,
                 lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
                 to: loggedinUser,
-                from: otherUser5,
+                from: otherUser7
             },
             {
                 id: utilService.makeId(),
-                subject: 'Message 8',
-                body: 'When my kids are happy, I am happy',
+                subject: 'Please verify your device',
+                body: 'Hey noanissim! A sign in attempt requires further verification because we did not recognize your device. To complete the sign in, enter the verification code on the unrecognized device.',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551133920394,
+                to: loggedinUser,
+                from: otherUser8
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Noa just posted',
+                body: 'Noa  recently posted‏‏, go check it out!',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1557777930594,
+                to: loggedinUser,
+                from: otherUser7
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Dropbox is full!',
+                body: 'Ziv and 68 others made changes in your shared folders‏‏',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551185230114,
+                to: loggedinUser,
+                from: otherUser6
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Spotify Premium',
+                body: 'Don\'t miss one month free trial!',
                 isRead: false,
                 isStarred: false,
                 lables: ['important', 'romantic'],
                 sentAt: 1551133930594,
                 to: loggedinUser,
-                from: otherUser4
+                from: otherUser9
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Your Avocode free trial is over',
+                body: 'The free trial for noanissim5\'s team has ended. Please log in and purchase a subscription within 14 days to keep working on your design projects',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1558893930594,
+                to: loggedinUser,
+                from: otherUser10
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Confirm Your Font Awesome Account',
+                body: 'HEY THERE! You\'re so close to using your first Font Awesome Kit!',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1661133930794,
+                to: loggedinUser,
+                from: otherUser11
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Yarden just posted',
+                body: 'Yarden Mathieson recently posted‏‏, go check it out!',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: loggedinUser,
+                from: otherUser7
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser7,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser7,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser6,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser8,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser9,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser10,
+                from: loggedinUser
+            },
+            {
+                id: utilService.makeId(),
+                subject: 'Hello!',
+                body: 'I\'m using Appsus! The best app ever made',
+                isRead: false,
+                isStarred: false,
+                lables: ['important', 'romantic'],
+                sentAt: 1551700930011,
+                to: otherUser11,
+                from: loggedinUser
             },
 
         ]

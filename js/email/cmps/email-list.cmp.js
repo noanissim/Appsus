@@ -28,11 +28,9 @@ export default {
             window.scrollTo(0, 0);
         },
         removeEmail(emailId) {
-            // console.log(emailId, 'i remove this');
             this.$emit('removeEmail', emailId);
         },
         changeStar(isStar, id) {
-            // console.log(isStar, 'is star?');
             this.$emit('changeStar', isStar, id);
         }
     },

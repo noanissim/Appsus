@@ -35,6 +35,10 @@ const routes = [{
         component: emailAdd
     },
     {
+        path: '/email/add/:body?',
+        component: emailAdd
+    },
+    {
         path: '/email/:emailId',
         component: emailDetails
     },

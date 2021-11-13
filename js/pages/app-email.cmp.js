@@ -124,7 +124,7 @@ export default {
     computed: {
         emailsToShow() {
             // returns emails based on the current filter
-            // console.log(this.filterBy);
+            console.log(this.filterBy);
             if (!this.filterBy ||
                 (!this.filterBy.subject &&
                     this.filterBy.selectOption === 'all' &&

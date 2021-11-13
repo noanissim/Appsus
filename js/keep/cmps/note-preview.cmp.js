@@ -12,13 +12,15 @@ export default {
               <li  v-for="(note,idx) in notes" :key="note.id" class="note-preview-container":style="note.style" >
                   <note-dynamic  class="note-dynamic"   @setInput="setInput" :note="note"/>
                   <div class="preview-btns">
-                      <img src="./img/notes/trashcan.png" @click.stop="remove(note.id)"/>
+                      <img title="Delete" src="./img/notes/trashcan.png" @click.stop="remove(note.id)"/>
                       <div>
-                        <input class="color-picker" :value="note.style.backgroundColor"  @change="openColor($event,note.id)" type="color"/>
+                        <input title="Color" class="color-picker" :value="note.style.backgroundColor"  @change="openColor($event,note.id)" type="color"/>
                       </div>
-                      <img @click="sendAsMail(note)"  src="img/notes/mail.png"/>
-                      <img @click="pinNote(note)" src="img/notes/pin.png"/>
-                      <img @click="duplicateNote(note)" src="img/notes/pluss.png"/>
+                      <router-link class="clean-btn" :to="'/email/add/'+note.info.txt">
+                          <img title="Send as email"   src="img/notes/mail.png"/>
+                    </router-link>
+                      <img title="Pin note" @click="pinNote(note)" src="img/notes/pin.png"/>
+                      <img title="Duplicate" @click="duplicateNote(note)" src="img/notes/pluss.png"/>
                   </div>
               </li>
           </ul>

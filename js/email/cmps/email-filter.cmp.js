@@ -2,7 +2,6 @@ export default {
     template: `
         <div class="email-filter ">
            
-            <!-- <label>Search: </label> -->
             <input @input="filter" v-model="filterBy.subject" type="text" placeholder="Search" class="search-input">
             
             <select class="select-dropdown" @change="filter" v-model="filterBy.selectOption">
@@ -20,7 +19,6 @@ export default {
             filterBy: {
                 subject: '',
                 selectOption: 'all',
-                // toPrice: Infinity,
             }
         };
     },
@@ -29,9 +27,7 @@ export default {
             this.$emit('filtered', {
                 ...this.filterBy
             });
-            //deep copy
-            // console.log(this.filterBy.selectOption);
-            // console.log(JSON.parse(JSON.stringify(this.filterBy)));
+
             this.$emit('filtered', JSON.parse(JSON.stringify(this.filterBy)));
         },
 

@@ -15,19 +15,12 @@ export default {
             </p>
             </div>
            
-            <!-- <p>To: {{email.to.fullname}}, {{email.to.email}}</p> -->
             <p>{{email.body}}</p>
-            <!-- <p>Is read: {{email.isRead}}</p> -->
-            <!-- <p>Sent at: {{convertToTime}}</p> -->
-            <!-- <p>Id: {{email.id}}</p> -->
-            <!-- <p>Star?{{email.isStarred}} </p> -->
-           <!-- <p>Star?{{isStar}} {{checkIfIsStarred}}</p> -->
-           <!-- <span class="fa fa-star star-img" :class="{'checked-star':email.isStarred, 'unChecked-star':!email.isStarred}"></span> -->
+          
             <div class="actions-email-expand">
                     <button title="Delete" class="clean-btn btn-delete-email" @click="removeEmail2(email.id)" >
                         <img class="action-img" src="./img/email/delete.png">
                     </button>
-                    <!-- <button @click="select(email)" >Details</button> -->
                     <router-link title="Expand"  class="btn btn-open-email" @click.native="scrollToTop" :to="'/email/'+email.id">
                         <img class="action-img" src="./img/email/expand.png">
                     </router-link>
@@ -61,12 +54,7 @@ export default {
         scrollToTop() {
             window.scrollTo(0, 0);
         },
-        changeColor() {
-            // this.review.rate = num;
-
-            // this.email.isStarred = true
-            // console.log('hello', this.email)
-        }
+        changeColor() {}
     },
     computed: {
         convertToTime() {

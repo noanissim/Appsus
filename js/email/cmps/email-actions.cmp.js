@@ -1,9 +1,7 @@
 import {
     eventBus
 } from '../../services/event-bus-service.js';
-// import {
-//     eventBus
-// } from '../../../img/email/send-message.png';
+
 
 
 export default {
@@ -83,11 +81,8 @@ export default {
             }
         }
     },
-    created() {
-        // this.count = this.unreadCount
-        // console.log(this.count);
 
-    },
+
     methods: {
         setFilterAll() {
             this.state.isAll = true
@@ -95,7 +90,6 @@ export default {
             this.state.isStar = false
             this.state.isSent = false
             this.state.isDraft = false
-            // console.log(this.state.isInbox);
             this.$emit('stateClicked', 'isAll')
 
         },
@@ -105,7 +99,6 @@ export default {
             this.state.isSent = false
             this.state.isDraft = false
             this.state.isAll = false
-            // console.log(this.state.isInbox);
             this.$emit('stateClicked', 'isInbox')
 
         },
@@ -115,7 +108,6 @@ export default {
             this.state.isSent = false
             this.state.isDraft = false
             this.state.isAll = false
-            // console.log(this.state.isStar);
             this.$emit('stateClicked', 'isStar')
 
         },
@@ -125,7 +117,6 @@ export default {
             this.state.isInbox = false
             this.state.isDraft = false
             this.state.isAll = false
-            // console.log(this.state.isSent);
             this.$emit('stateClicked', 'isSent')
 
         },
@@ -135,7 +126,6 @@ export default {
             this.state.isStar = false
             this.state.isSent = false
             this.state.isAll = false
-            // console.log(this.state.isDraft);
             this.$emit('stateClicked', 'isDraft')
 
         },
@@ -164,7 +154,11 @@ export default {
             return `width:${this.count}%;`
         },
         countAll() {
-            return this.emails.length
+            let count = 0
+            this.emails.forEach(email => {
+                count++
+            })
+            return count
         },
         countInbox() {
             let count = 0
@@ -183,7 +177,7 @@ export default {
         countSent() {
             let count = 0
             this.emails.forEach(email => {
-                if (email.sentAt > 0) count++
+                if (email.sentAt > 0 && email.from.fullname === 'Appsus Admin') count++
             })
             return count
         },

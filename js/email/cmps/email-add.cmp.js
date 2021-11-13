@@ -1,5 +1,9 @@
-import { emailService } from '../services/email-service.js'
-import { eventBus } from '../../services/event-bus-service.js'
+import {
+  emailService
+} from '../services/email-service.js'
+import {
+  eventBus
+} from '../../services/event-bus-service.js'
 
 export default {
   template: `
@@ -30,15 +34,31 @@ export default {
       emailToEdit: null,
     }
   },
+
   created() {
-    const { emailId } = this.$route.params
+    const {
+      emailId
+    } = this.$route.params
     if (emailId) {
       emailService.getById(emailId).then(email => (this.emailToEdit = email))
       //to the drafts
     } else {
       this.emailToEdit = emailService.getEmptyEmail()
+
+
+      const {
+        body
+      } = this.$route.params;
+      if (body) {
+        console.log(body);
+        this.emailToEdit = emailService.getEmptyEmail()
+        console.log(this.emailToEdit);
+        this.emailToEdit.body = 'Sent from notes: ' + body
+      }
+
     }
   },
+
   methods: {
     save() {
       emailService
