@@ -81,9 +81,7 @@ export default {
                 emailService.save(email)
 
             })
-            .catch(err => {
-                // console.log(err);
-            })
+
     },
     methods: {
         closeDetails() {

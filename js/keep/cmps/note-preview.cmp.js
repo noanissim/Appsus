@@ -35,21 +35,17 @@ export default {
   },
   created() {},
   methods: {
-    sendAsMail(note) {
-      console.log('NOTE', note)
-    },
+    sendAsMail(note) {},
     remove(noteId) {
       this.$emit('removeNote', noteId)
     },
     pinNote(note) {
-      // console.log(note)
       this.$emit('pinNote', note)
     },
     duplicateNote(note) {
       this.$emit('duplicate', note)
     },
     openColor(ev, noteId) {
-      // console.log('COLOR', noteId, ev.target.value)
       notesService.changeBgcColor(noteId, ev.target.value).then(note => {
         this.$emit('updateColor', noteId)
       })

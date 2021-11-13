@@ -352,7 +352,6 @@ function addNewNote(type, value) {
 
 function changeBgcColor(noteId, color) {
   return getById(noteId).then(note => {
-    // console.log(note)
     note.style.backgroundColor = color
     storageService.put(NOTES_KEY, note)
   })
@@ -372,7 +371,6 @@ function updateNote(id) {
 
 function onPinNote(note) {
   return remove(note.id).then(res => {
-    // console.log('REMOVE FROM SERVICE', res)
     return storageService.postUnshift(NOTES_KEY, note)
   })
 }
