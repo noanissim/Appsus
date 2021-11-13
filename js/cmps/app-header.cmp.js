@@ -3,7 +3,7 @@ export default {
         <header  class="app-header">
           <div class="logo">
             <router-link @click.native="scrollToTop"  to="/">
-            <img src="./img/capture.png">
+            <img src="./img/logo3.png">
             </router-link>
           </div>
 
